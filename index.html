@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Indra Traders - Sri Lanka's premium vehicle dealership. Find new and pre-owned luxury cars, SUVs, and commercial vehicles with guaranteed quality.">
+    <title>Indra Traders | Premium Vehicle Dealership</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ========== TOP BAR ========== -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="top-bar-left">
+                <span><i class="fas fa-phone-alt"></i> +94 77 123 4567</span>
+                <span><i class="fas fa-envelope"></i> info@indratraders.lk</span>
+                <span><i class="fas fa-clock"></i> Mon - Sat: 8:30 AM - 6:00 PM</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== STICKY HEADER ========== -->
+    <header class="main-header" id="mainHeader">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-car-side"></i></span>
+                <div class="logo-text">
+                    <span class="logo-name">INDRA</span>
+                    <span class="logo-sub">TRADERS</span>
+                </div>
+            </a>
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="vehicles.html" class="nav-link">Vehicles</a>
+                <a href="spare-parts.html" class="nav-link">Spare Parts</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="finance.html" class="nav-link">Finance</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <a href="tel:+94771234567" class="header-cta"><i class="fas fa-phone"></i> Call Now</a>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== MOBILE MENU OVERLAY ========== -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="index.html" class="mobile-nav-link active">Home</a>
+            <a href="vehicles.html" class="mobile-nav-link">Vehicles</a>
+            <a href="spare-parts.html" class="mobile-nav-link">Spare Parts</a>
+            <a href="services.html" class="mobile-nav-link">Services</a>
+            <a href="finance.html" class="mobile-nav-link">Finance</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+            <div class="mobile-menu-info">
+                <p><i class="fas fa-phone-alt"></i> +94 77 123 4567</p>
+                <p><i class="fas fa-envelope"></i> info@indratraders.lk</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero-section" id="heroSection">
+        <canvas id="heroCanvas"></canvas>
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="hero-slide-bg" style="background-image: url('https://images.pexels.com/photos/17632052/pexels-photo-17632052.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600')"></div>
+                    <div class="hero-slide-content">
+                        <span class="hero-tag">Premium Collection 2025</span>
+                        <h1 class="hero-title">Find Your <span class="gold">Dream Vehicle</span></h1>
+                        <p class="hero-desc">Sri Lanka's most trusted vehicle dealership with over 500+ premium vehicles in stock. Quality guaranteed.</p>
+                        <div class="hero-btns">
+                            <a href="vehicles.html" class="btn btn-primary">Browse Vehicles</a>
+                            <a href="contact.html" class="btn btn-outline">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="hero-slide-bg" style="background-image: url('https://images.pexels.com/photos/18108314/pexels-photo-18108314.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600')"></div>
+                    <div class="hero-slide-content">
+                        <span class="hero-tag">Exclusive Deals</span>
+                        <h1 class="hero-title">Luxury Cars at <span class="gold">Best Prices</span></h1>
+                        <p class="hero-desc">Explore our curated collection of luxury sedans, SUVs, and sports cars. Flexible financing available.</p>
+                        <div class="hero-btns">
+                            <a href="finance.html" class="btn btn-primary">Get Financing</a>
+                            <a href="vehicles.html" class="btn btn-outline">View Stock</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="hero-slide-bg" style="background-image: url('https://images.pexels.com/photos/29566880/pexels-photo-29566880.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600')"></div>
+                    <div class="hero-slide-content">
+                        <span class="hero-tag">Trade-In Available</span>
+                        <h1 class="hero-title">Upgrade Your <span class="gold">Ride Today</span></h1>
+                        <p class="hero-desc">Trade in your old vehicle and get the best value. We offer hassle-free exchange programs.</p>
+                        <div class="hero-btns">
+                            <a href="services.html" class="btn btn-primary">Our Services</a>
+                            <a href="contact.html" class="btn btn-outline">Get a Quote</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination hero-pagination"></div>
+            <div class="swiper-button-next hero-nav-btn"></div>
+            <div class="swiper-button-prev hero-nav-btn"></div>
+        </div>
+    </section>
+
+    <!-- ========== STATS BAR ========== -->
+    <section class="stats-bar">
+        <div class="container stats-grid">
+            <div class="stat-item" data-anim>
+                <div class="stat-number" data-count="500">0</div>
+                <span class="stat-plus">+</span>
+                <p>Vehicles Sold</p>
+            </div>
+            <div class="stat-item" data-anim>
+                <div class="stat-number" data-count="15">0</div>
+                <span class="stat-plus">+</span>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item" data-anim>
+                <div class="stat-number" data-count="50">0</div>
+                <span class="stat-plus">+</span>
+                <p>Brands Available</p>
+            </div>
+            <div class="stat-item" data-anim>
+                <div class="stat-number" data-count="2000">0</div>
+                <span class="stat-plus">+</span>
+                <p>Happy Customers</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== VEHICLE CATEGORIES ========== -->
+    <section class="section vehicle-section" id="vehicleSection">
+        <div class="container">
+            <div class="section-header" data-anim>
+                <span class="section-tag">Our Collection</span>
+                <h2 class="section-title">Browse by <span class="gold">Category</span></h2>
+                <p class="section-desc">Explore our wide range of quality vehicles across every category</p>
+            </div>
+            <div class="category-tabs" data-anim>
+                <button class="cat-tab active" data-cat="all"><i class="fas fa-th-large"></i> All</button>
+                <button class="cat-tab" data-cat="car"><i class="fas fa-car"></i> Cars</button>
+                <button class="cat-tab" data-cat="suv"><i class="fas fa-truck-monster"></i> SUVs</button>
+                <button class="cat-tab" data-cat="van"><i class="fas fa-shuttle-van"></i> Vans</button>
+                <button class="cat-tab" data-cat="doublecab"><i class="fas fa-truck-pickup"></i> Double Cabs</button>
+                <button class="cat-tab" data-cat="truck"><i class="fas fa-truck"></i> Trucks</button>
+            </div>
+            <div class="vehicle-grid" id="vehicleGrid">
+                <!-- Vehicle Card 1 -->
+                <div class="vehicle-card" data-cat="car" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/16288341/pexels-photo-16288341.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Audi A4" loading="lazy">
+                        <span class="vehicle-badge">New Arrival</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Audi A4 2023</h3>
+                        <p class="vehicle-price">LKR 18,500,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Petrol</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 25,000 km</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 2 -->
+                <div class="vehicle-card" data-cat="suv" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/12532746/pexels-photo-12532746.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="BMW X5" loading="lazy">
+                        <span class="vehicle-badge hot">Hot Deal</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>BMW X5 2022</h3>
+                        <p class="vehicle-price">LKR 32,000,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 18,000 km</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 3 -->
+                <div class="vehicle-card" data-cat="car" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/17601809/pexels-photo-17601809.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="BMW 3 Series" loading="lazy">
+                        <span class="vehicle-badge">Premium</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>BMW 3 Series 2023</h3>
+                        <p class="vehicle-price">LKR 22,500,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Petrol</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 12,000 km</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 4 -->
+                <div class="vehicle-card" data-cat="suv" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/10820126/pexels-photo-10820126.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Range Rover" loading="lazy">
+                        <span class="vehicle-badge hot">Hot Deal</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Range Rover Sport 2022</h3>
+                        <p class="vehicle-price">LKR 45,000,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 30,000 km</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 5 -->
+                <div class="vehicle-card" data-cat="car" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/12960439/pexels-photo-12960439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Mercedes Benz" loading="lazy">
+                        <span class="vehicle-badge">Luxury</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Mercedes-Benz C200 2023</h3>
+                        <p class="vehicle-price">LKR 27,800,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Petrol</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 8,000 km</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 6 -->
+                <div class="vehicle-card" data-cat="van" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/4391469/pexels-photo-4391469.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Toyota HiAce" loading="lazy">
+                        <span class="vehicle-badge">Best Seller</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Toyota HiAce 2021</h3>
+                        <p class="vehicle-price">LKR 14,200,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 45,000 km</span>
+                            <span><i class="fas fa-cog"></i> Manual</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 7 -->
+                <div class="vehicle-card" data-cat="doublecab" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/12021863/pexels-photo-12021863.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Ford Ranger" loading="lazy">
+                        <span class="vehicle-badge">Popular</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Ford Ranger 2022</h3>
+                        <p class="vehicle-price">LKR 19,500,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 32,000 km</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 8 -->
+                <div class="vehicle-card" data-cat="car" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/6706311/pexels-photo-6706311.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Toyota Corolla" loading="lazy">
+                        <span class="vehicle-badge">Value Pick</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Toyota Corolla 2023</h3>
+                        <p class="vehicle-price">LKR 12,800,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Hybrid</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 15,000 km</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 9 -->
+                <div class="vehicle-card" data-cat="suv" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/16646416/pexels-photo-16646416.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="VW Touareg" loading="lazy">
+                        <span class="vehicle-badge">Premium</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>VW Touareg 2022</h3>
+                        <p class="vehicle-price">LKR 28,500,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 22,000 km</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 10 -->
+                <div class="vehicle-card" data-cat="van" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/36377071/pexels-photo-36377071.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Mercedes Vito" loading="lazy">
+                        <span class="vehicle-badge">Luxury</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Mercedes Vito 2023</h3>
+                        <p class="vehicle-price">LKR 21,000,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 10,000 km</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 11 -->
+                <div class="vehicle-card" data-cat="doublecab" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/12021856/pexels-photo-12021856.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Toyota Hilux" loading="lazy">
+                        <span class="vehicle-badge hot">Hot Deal</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Toyota Hilux 2022</h3>
+                        <p class="vehicle-price">LKR 17,900,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 28,000 km</span>
+                            <span><i class="fas fa-cog"></i> Manual</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 12 -->
+                <div class="vehicle-card" data-cat="car" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/24017320/pexels-photo-24017320.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Mitsubishi Lancer" loading="lazy">
+                        <span class="vehicle-badge">Sport</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Mitsubishi Lancer Evo X</h3>
+                        <p class="vehicle-price">LKR 16,500,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Petrol</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 42,000 km</span>
+                            <span><i class="fas fa-cog"></i> Manual</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vehicle Card 13 -->
+                <div class="vehicle-card" data-cat="truck" data-anim>
+                    <div class="vehicle-card-img">
+                        <img src="https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Isuzu Truck" loading="lazy">
+                        <span class="vehicle-badge">Heavy Duty</span>
+                        <div class="vehicle-overlay">
+                            <a href="vehicles.html" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="vehicle-card-body">
+                        <h3>Isuzu NQR 2021</h3>
+                        <p class="vehicle-price">LKR 16,500,000</p>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-tachometer-alt"></i> 65,000 km</span>
+                            <span><i class="fas fa-cog"></i> Manual</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top:2.5rem;" data-anim>
+                <a href="vehicles.html" class="btn btn-primary btn-lg"><i class="fas fa-th-large"></i> View All Vehicles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BRAND MARQUEE ========== -->
+    <section class="brand-marquee-section">
+        <div class="section-header" data-anim>
+            <span class="section-tag">Trusted Brands</span>
+            <h2 class="section-title">We Deal in <span class="gold">Top Brands</span></h2>
+        </div>
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <div class="marquee-content">
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Toyota</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Honda</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>BMW</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Mercedes</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Audi</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Nissan</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Suzuki</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Hyundai</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Ford</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Mazda</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Volvo</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Lexus</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Mitsubishi</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>KIA</span></div>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Toyota</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Honda</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>BMW</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Mercedes</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Audi</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Nissan</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Suzuki</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Hyundai</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Ford</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Mazda</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Volvo</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>Lexus</span></div>
+                    <div class="brand-logo"><i class="fas fa-car"></i><span>Mitsubishi</span></div>
+                    <div class="brand-logo"><i class="fas fa-car-side"></i><span>KIA</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHY CHOOSE US ========== -->
+    <section class="section why-section">
+        <div class="container">
+            <div class="section-header" data-anim>
+                <span class="section-tag">Why Choose Us</span>
+                <h2 class="section-title">The Indra Traders <span class="gold">Advantage</span></h2>
+                <p class="section-desc">We go above and beyond to ensure your vehicle buying experience is seamless</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card tilt-card" data-anim>
+                    <div class="why-card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Warranty Assured</h3>
+                    <p>Every vehicle comes with comprehensive warranty coverage. Drive with confidence knowing you're protected.</p>
+                    <div class="why-card-glow"></div>
+                </div>
+                <div class="why-card tilt-card" data-anim>
+                    <div class="why-card-icon"><i class="fas fa-headset"></i></div>
+                    <h3>24/7 Breakdown Service</h3>
+                    <p>Round-the-clock roadside assistance across Sri Lanka. We're just one call away whenever you need help.</p>
+                    <div class="why-card-glow"></div>
+                </div>
+                <div class="why-card tilt-card" data-anim>
+                    <div class="why-card-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Genuine Spare Parts</h3>
+                    <p>Access to a massive inventory of genuine OEM spare parts. Quick delivery and competitive prices.</p>
+                    <div class="why-card-glow"></div>
+                </div>
+                <div class="why-card tilt-card" data-anim>
+                    <div class="why-card-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3>Easy Financing</h3>
+                    <p>Flexible leasing options through top banks. Low interest rates and quick approval within 24 hours.</p>
+                    <div class="why-card-glow"></div>
+                </div>
+                <div class="why-card tilt-card" data-anim>
+                    <div class="why-card-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <h3>Trade-In Program</h3>
+                    <p>Get the best value for your current vehicle. Hassle-free trade-in process with instant valuation.</p>
+                    <div class="why-card-glow"></div>
+                </div>
+                <div class="why-card tilt-card" data-anim>
+                    <div class="why-card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Certified Quality</h3>
+                    <p>Every vehicle undergoes a rigorous 150-point inspection before being listed. Only the best make the cut.</p>
+                    <div class="why-card-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURED SHOWCASE ========== -->
+    <section class="section featured-section">
+        <div class="container">
+            <div class="section-header" data-anim>
+                <span class="section-tag">Featured</span>
+                <h2 class="section-title">Showroom <span class="gold">Spotlight</span></h2>
+            </div>
+            <div class="swiper featured-swiper" data-anim>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="featured-card">
+                            <img src="https://images.pexels.com/photos/17632049/pexels-photo-17632049.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=800" alt="Lamborghini" loading="lazy">
+                            <div class="featured-info">
+                                <h3>Lamborghini Huracan</h3>
+                                <p>LKR 95,000,000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="featured-card">
+                            <img src="https://images.pexels.com/photos/30687977/pexels-photo-30687977.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=800" alt="Sports Cars" loading="lazy">
+                            <div class="featured-info">
+                                <h3>Luxury Sports Collection</h3>
+                                <p>Starting from LKR 45,000,000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="featured-card">
+                            <img src="https://images.pexels.com/photos/9761026/pexels-photo-9761026.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=800" alt="Ferrari" loading="lazy">
+                            <div class="featured-info">
+                                <h3>Ferrari Roma</h3>
+                                <p>LKR 120,000,000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="featured-card">
+                            <img src="https://images.pexels.com/photos/29566879/pexels-photo-29566879.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=800" alt="SUV Collection" loading="lazy">
+                            <div class="featured-info">
+                                <h3>Premium SUV Range</h3>
+                                <p>Starting from LKR 25,000,000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="featured-card">
+                            <img src="https://images.pexels.com/photos/32725749/pexels-photo-32725749.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=800" alt="Green Sports Car" loading="lazy">
+                            <div class="featured-info">
+                                <h3>Exclusive Imports</h3>
+                                <p>Contact for Price</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FINANCE CALCULATOR PREVIEW ========== -->
+    <section class="section finance-preview-section" id="financePreview">
+        <div class="container">
+            <div class="finance-preview-grid">
+                <div class="finance-preview-text" data-anim>
+                    <span class="section-tag">Quick Calculator</span>
+                    <h2 class="section-title" style="text-align:left;">Estimate Your <span class="gold">Monthly Payment</span></h2>
+                    <p>Use our interactive calculator to get an instant estimate. Flexible leasing options available through all major banks in Sri Lanka.</p>
+                    <div class="finance-mini-calc">
+                        <div class="calc-group">
+                            <label>Vehicle Price (LKR)</label>
+                            <input type="range" min="1000000" max="100000000" value="15000000" step="500000" id="miniPrice" class="range-slider">
+                            <span class="range-val" id="miniPriceVal">15,000,000</span>
+                        </div>
+                        <div class="calc-group">
+                            <label>Down Payment (LKR)</label>
+                            <input type="range" min="0" max="50000000" value="3000000" step="500000" id="miniDown" class="range-slider">
+                            <span class="range-val" id="miniDownVal">3,000,000</span>
+                        </div>
+                        <div class="calc-group">
+                            <label>Duration</label>
+                            <select id="miniDuration" class="calc-select">
+                                <option value="1">1 Year</option>
+                                <option value="2">2 Years</option>
+                                <option value="3" selected>3 Years</option>
+                                <option value="4">4 Years</option>
+                                <option value="5">5 Years</option>
+                            </select>
+                        </div>
+                        <div class="calc-result">
+                            <span>Est. Monthly Payment</span>
+                            <div class="calc-result-amount" id="miniResult">LKR 388,889</div>
+                        </div>
+                    </div>
+                    <a href="finance.html" class="btn btn-primary" style="margin-top:1rem;"><i class="fas fa-calculator"></i> Full Calculator</a>
+                </div>
+                <div class="finance-preview-img" data-anim>
+                    <img src="https://images.pexels.com/photos/15513826/pexels-photo-15513826.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800" alt="Finance">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA SECTION ========== -->
+    <section class="cta-section">
+        <div class="cta-bg" style="background-image: url('https://images.pexels.com/photos/18108314/pexels-photo-18108314.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=1600')"></div>
+        <div class="cta-overlay"></div>
+        <div class="container cta-content" data-anim>
+            <h2>Ready to Find Your Perfect Vehicle?</h2>
+            <p>Visit our showroom or contact us today. Our team of experts is ready to help you find the perfect ride.</p>
+            <div class="cta-btns">
+                <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-map-marker-alt"></i> Visit Showroom</a>
+                <a href="tel:+94771234567" class="btn btn-outline btn-lg"><i class="fas fa-phone"></i> Call Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <span class="logo-icon"><i class="fas fa-car-side"></i></span>
+                    <div class="logo-text">
+                        <span class="logo-name">INDRA</span>
+                        <span class="logo-sub">TRADERS</span>
+                    </div>
+                </div>
+                <p>Sri Lanka's premier vehicle dealership offering the finest selection of quality vehicles since 2009. Trusted by thousands of happy customers.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="vehicles.html">Vehicles</a></li>
+                    <li><a href="spare-parts.html">Spare Parts</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="finance.html">Finance</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Vehicle Types</h4>
+                <ul>
+                    <li><a href="vehicles.html">Sedans</a></li>
+                    <li><a href="vehicles.html">SUVs & Crossovers</a></li>
+                    <li><a href="vehicles.html">Vans & Buses</a></li>
+                    <li><a href="vehicles.html">Double Cabs</a></li>
+                    <li><a href="vehicles.html">Trucks</a></li>
+                    <li><a href="vehicles.html">Luxury Cars</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <div class="footer-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> No. 245, Kandy Road,<br>Kadawatha, Sri Lanka</p>
+                    <p><i class="fas fa-phone-alt"></i> +94 77 123 4567<br>+94 11 234 5678</p>
+                    <p><i class="fas fa-envelope"></i> info@indratraders.lk<br>sales@indratraders.lk</p>
+                    <p><i class="fas fa-clock"></i> Mon - Sat: 8:30 AM - 6:00 PM<br>Sun: By Appointment</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2025 Indra Traders. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
