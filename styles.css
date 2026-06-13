@@ -299,13 +299,6 @@ input, select, textarea { font-family: var(--font); }
     max-height: 1000px;
     overflow: hidden;
 }
-#heroCanvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 2;
-    pointer-events: none;
-}
 .hero-swiper { width: 100%; height: 100%; }
 .hero-slide-bg {
     position: absolute;
@@ -897,6 +890,62 @@ input, select, textarea { font-family: var(--font); }
     transform: translateY(0);
 }
 .back-to-top:hover { transform: translateY(-4px); }
+
+/* ---------- WhatsApp Floating Button ---------- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+.whatsapp-float:hover {
+    background-color: #128C7E;
+    color: #FFF;
+    transform: scale(1.1);
+}
+.whatsapp-float::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    border-radius: 50%;
+    animation: pulse-wa 2s infinite;
+}
+@keyframes pulse-wa {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        bottom: 90px;
+        right: 20px;
+    }
+    .whatsapp-float::before {
+        width: 50px;
+        height: 50px;
+    }
+}
 
 /* ============================================
    PAGE-SPECIFIC: Vehicles Page
