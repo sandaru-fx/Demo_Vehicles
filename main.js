@@ -328,14 +328,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
+    function closeMobileMenu() {
+        hamburger?.classList.remove('active');
+        mobileMenu?.classList.remove('active');
+        document.body.style.overflow = '';
+        document.querySelectorAll('.mobile-promo-section').forEach(section => {
+            section.classList.remove('is-open');
+            section.querySelector('.mobile-promo-label')?.setAttribute('aria-expanded', 'false');
+        });
+    }
+
+    function initMobilePromoAccordion() {
+        document.querySelectorAll('.mobile-promo-section').forEach(section => {
+            const label = section.querySelector('.mobile-promo-label');
+            if (!label || label.dataset.promoInit) return;
+            label.dataset.promoInit = '1';
+            label.setAttribute('role', 'button');
+            label.setAttribute('aria-expanded', 'false');
+
+            if (!label.querySelector('.mobile-promo-arrow')) {
+                const arrow = document.createElement('i');
+                arrow.className = 'fas fa-chevron-down mobile-promo-arrow';
+                label.appendChild(arrow);
+            }
+
+            label.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const isOpen = section.classList.toggle('is-open');
+                label.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+        });
+    }
+
+    initMobilePromoAccordion();
+
     hamburger?.addEventListener('click', () => {
+        const willOpen = !mobileMenu.classList.contains('active');
         hamburger.classList.toggle('active');
         mobileMenu.classList.toggle('active');
         document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
 
-        // GSAP animate mobile links
+        if (!willOpen) {
+            document.querySelectorAll('.mobile-promo-section').forEach(section => {
+                section.classList.remove('is-open');
+                section.querySelector('.mobile-promo-label')?.setAttribute('aria-expanded', 'false');
+            });
+        }
+
         if (mobileMenu.classList.contains('active') && typeof gsap !== 'undefined') {
-            gsap.fromTo(mobileLinks, 
+            gsap.fromTo(mobileLinks,
                 { opacity: 0, y: 30 },
                 { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, ease: 'power3.out', delay: 0.2 }
             );
@@ -343,19 +385,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger?.classList.remove('active');
-            mobileMenu?.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMobileMenu);
     });
 
     document.querySelectorAll('.mobile-promo-card, .mobile-promo-view-all').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger?.classList.remove('active');
-            mobileMenu?.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMobileMenu);
     });
 
     // ==========================================
@@ -805,7 +839,56 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
-    function filterVehicles() {
+    const priceLabels = {
+        low: 'Under LKR 15M', mid: 'LKR 15M - 30M', high: 'Above LKR 30M'
+    };
+
+    function buildFilterSummary() {
+        const year = document.getElementById('filterYear')?.value || '';
+        const make = filterMake?.value || '';
+        const model = filterModel?.value || '';
+        const condition = document.getElementById('filterCondition')?.value || '';
+        const price = document.getElementById('filterPrice')?.value || '';
+        const parts = [];
+
+        if (year) parts.push(year);
+        if (make) parts.push(makeLabels[make] || make);
+        if (model) parts.push(modelLabels[model] || model);
+        if (condition) parts.push(conditionLabels[condition] || condition);
+        if (price) parts.push(priceLabels[price] || price);
+
+        return parts.length ? parts.join(' · ') : 'All vehicles';
+    }
+
+    function collapseMobileFilter(visibleCount) {
+        if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+        const filterBar = document.getElementById('vehicleFilterBar');
+        const summary = document.getElementById('filterMobileSummary');
+        const summaryText = document.getElementById('filterSummaryText');
+        if (!filterBar || !summary) return;
+
+        filterBar.classList.add('search-collapsed');
+        summary.hidden = false;
+        if (summaryText) {
+            summaryText.textContent = `${visibleCount} vehicle${visibleCount === 1 ? '' : 's'} · ${buildFilterSummary()}`;
+        }
+
+        const grid = document.getElementById('vehiclePageGrid');
+        if (grid) {
+            const top = grid.getBoundingClientRect().top + window.scrollY - 110;
+            window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+        }
+    }
+
+    function expandMobileFilter() {
+        const filterBar = document.getElementById('vehicleFilterBar');
+        const summary = document.getElementById('filterMobileSummary');
+        filterBar?.classList.remove('search-collapsed');
+        if (summary) summary.hidden = true;
+    }
+
+    function filterVehicles(options = {}) {
         const year = document.getElementById('filterYear')?.value || '';
         const make = filterMake?.value || '';
         const model = filterModel?.value || '';
@@ -843,6 +926,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 ? `Showing ${visibleCount} of ${vehiclePageCards.length} vehicles`
                 : '';
         }
+
+        if (options.collapseMobile) {
+            collapseMobileFilter(visibleCount);
+        }
     }
 
     if (vehiclePageCards.length) {
@@ -851,5 +938,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (filterMake) filterMake.addEventListener('change', updateModelOptions);
-    if (searchVehicleBtn) searchVehicleBtn.addEventListener('click', filterVehicles);
+    if (searchVehicleBtn) {
+        searchVehicleBtn.addEventListener('click', () => filterVehicles({ collapseMobile: true }));
+    }
+    document.getElementById('filterExpandBtn')?.addEventListener('click', expandMobileFilter);
 });

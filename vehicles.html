@@ -176,9 +176,16 @@
     </section>
 
     <!-- FILTER BAR -->
-    <div class="filter-bar">
+    <div class="filter-bar" id="vehicleFilterBar">
         <div class="container">
-            <div class="vehicle-search-grid">
+            <div class="filter-bar-mobile-summary" id="filterMobileSummary" hidden>
+                <div class="filter-summary-text">
+                    <i class="fas fa-search"></i>
+                    <span id="filterSummaryText">Showing filtered vehicles</span>
+                </div>
+                <button type="button" class="filter-expand-btn" id="filterExpandBtn">Modify Search</button>
+            </div>
+            <div class="vehicle-search-grid" id="vehicleSearchGrid">
                 <div class="search-field">
                     <label for="filterYear">Year</label>
                     <select class="search-field-select" id="filterYear">
