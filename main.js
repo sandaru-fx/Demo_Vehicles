@@ -1,5 +1,5 @@
 /* ============================================
-   INDRA TRADERS - Main JavaScript
+   SKARA TRADERS - Main JavaScript
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -380,25 +380,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 13. VEHICLE PAGE FILTER (vehicles.html)
     // ==========================================
-    const filterInputs = document.querySelectorAll('.filter-input');
+    const searchVehicleBtn = document.getElementById('searchVehicleBtn');
     const vehiclePageCards = document.querySelectorAll('#vehiclePageGrid .vehicle-card');
 
     function filterVehicles() {
-        const brand = document.getElementById('filterBrand')?.value?.toLowerCase() || '';
-        const type = document.getElementById('filterType')?.value?.toLowerCase() || '';
+        const year = document.getElementById('filterYear')?.value || '';
+        const make = document.getElementById('filterMake')?.value?.toLowerCase() || '';
+        const model = document.getElementById('filterModel')?.value?.toLowerCase() || '';
+        const condition = document.getElementById('filterCondition')?.value?.toLowerCase() || '';
         const price = document.getElementById('filterPrice')?.value || '';
-        const fuel = document.getElementById('filterFuel')?.value?.toLowerCase() || '';
 
         vehiclePageCards.forEach(card => {
+            const cardYear = card.dataset.year || '';
             const cardBrand = card.dataset.brand || '';
-            const cardType = card.dataset.cat || '';
+            const cardModel = card.dataset.model || '';
+            const cardCondition = card.dataset.condition || '';
             const cardPrice = parseInt(card.dataset.price) || 0;
-            const cardFuel = card.dataset.fuel || '';
 
             let show = true;
-            if (brand && !cardBrand.includes(brand)) show = false;
-            if (type && cardType !== type) show = false;
-            if (fuel && cardFuel !== fuel) show = false;
+            if (year && cardYear !== year) show = false;
+            if (make && cardBrand !== make) show = false;
+            if (model && cardModel !== model) show = false;
+            if (condition && cardCondition !== condition) show = false;
             if (price === 'low' && cardPrice > 15000000) show = false;
             if (price === 'mid' && (cardPrice < 15000000 || cardPrice > 30000000)) show = false;
             if (price === 'high' && cardPrice < 30000000) show = false;
@@ -410,5 +413,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    filterInputs.forEach(input => input.addEventListener('change', filterVehicles));
+    if (searchVehicleBtn) searchVehicleBtn.addEventListener('click', filterVehicles);
 });

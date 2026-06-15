@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse our collection of premium quality vehicles at Indra Traders. Filter by brand, type, and price to find your perfect ride in Sri Lanka.">
-    <title>Vehicles | Indra Traders</title>
+    <meta name="description" content="Browse our collection of premium quality vehicles at SKARA TRADERS. Filter by brand, type, and price to find your perfect ride in Sri Lanka.">
+    <title>Vehicles | SKARA TRADERS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -17,7 +17,7 @@
         <div class="container top-bar-inner">
             <div class="top-bar-left">
                 <span><i class="fas fa-phone-alt"></i> +94 77 123 4567</span>
-                <span><i class="fas fa-envelope"></i> info@indratraders.lk</span>
+                <span><i class="fas fa-envelope"></i> info@skaratrader.lk</span>
                 <span><i class="fas fa-clock"></i> Mon - Sat: 8:30 AM - 6:00 PM</span>
             </div>
             <div class="top-bar-right">
@@ -35,7 +35,7 @@
             <a href="index.html" class="logo">
                 <span class="logo-icon"><i class="fas fa-car-side"></i></span>
                 <div class="logo-text">
-                    <span class="logo-name">INDRA</span>
+                    <span class="logo-name">SKARA</span>
                     <span class="logo-sub">TRADERS</span>
                 </div>
             </a>
@@ -82,51 +82,81 @@
 
     <!-- FILTER BAR -->
     <div class="filter-bar">
-        <div class="container filter-bar-inner">
-            <div class="filter-group">
-                <label>Brand</label>
-                <select class="filter-input" id="filterBrand">
-                    <option value="">All Brands</option>
-                    <option value="toyota">Toyota</option>
-                    <option value="bmw">BMW</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                    <option value="honda">Honda</option>
-                    <option value="nissan">Nissan</option>
-                    <option value="ford">Ford</option>
-                    <option value="vw">Volkswagen</option>
-                    <option value="mitsubishi">Mitsubishi</option>
-                    <option value="landrover">Land Rover</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label>Type</label>
-                <select class="filter-input" id="filterType">
-                    <option value="">All Types</option>
-                    <option value="car">Sedan / Car</option>
-                    <option value="suv">SUV</option>
-                    <option value="van">Van</option>
-                    <option value="doublecab">Double Cab</option>
-                    <option value="truck">Truck</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label>Price Range</label>
-                <select class="filter-input" id="filterPrice">
-                    <option value="">Any Price</option>
-                    <option value="low">Under LKR 15M</option>
-                    <option value="mid">LKR 15M - 30M</option>
-                    <option value="high">Above LKR 30M</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label>Fuel Type</label>
-                <select class="filter-input" id="filterFuel">
-                    <option value="">All Fuels</option>
-                    <option value="petrol">Petrol</option>
-                    <option value="diesel">Diesel</option>
-                    <option value="hybrid">Hybrid</option>
-                </select>
+        <div class="container">
+            <div class="vehicle-search-grid">
+                <div class="search-field">
+                    <label for="filterYear">Year</label>
+                    <select class="search-field-select" id="filterYear">
+                        <option value="">Select Year</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2019">2019</option>
+                    </select>
+                    <i class="fas fa-chevron-down search-field-chevron"></i>
+                </div>
+                <div class="search-field">
+                    <label for="filterMake">Make</label>
+                    <select class="search-field-select" id="filterMake">
+                        <option value="">Select Make</option>
+                        <option value="toyota">Toyota</option>
+                        <option value="bmw">BMW</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                        <option value="honda">Honda</option>
+                        <option value="nissan">Nissan</option>
+                        <option value="ford">Ford</option>
+                        <option value="vw">Volkswagen</option>
+                        <option value="mitsubishi">Mitsubishi</option>
+                        <option value="landrover">Land Rover</option>
+                    </select>
+                    <i class="fas fa-chevron-down search-field-chevron"></i>
+                </div>
+                <div class="search-field">
+                    <label for="filterModel">Model</label>
+                    <select class="search-field-select" id="filterModel">
+                        <option value="">Select Model</option>
+                        <option value="a4">A4</option>
+                        <option value="x5">X5</option>
+                        <option value="3-series">3 Series</option>
+                        <option value="range-rover-sport">Range Rover Sport</option>
+                        <option value="c200">C200</option>
+                        <option value="hiace">HiAce</option>
+                        <option value="ranger">Ranger</option>
+                        <option value="corolla">Corolla</option>
+                        <option value="touareg">Touareg</option>
+                        <option value="vito">Vito</option>
+                        <option value="hilux">Hilux</option>
+                        <option value="lancer-evo-x">Lancer Evo X</option>
+                        <option value="hr-v">HR-V</option>
+                        <option value="sylphy">Sylphy</option>
+                        <option value="ranger-wildtrak">Ranger Wildtrak</option>
+                    </select>
+                    <i class="fas fa-chevron-down search-field-chevron"></i>
+                </div>
+                <div class="search-field">
+                    <label for="filterCondition">Condition</label>
+                    <select class="search-field-select" id="filterCondition">
+                        <option value="">Select Condition</option>
+                        <option value="new">New</option>
+                        <option value="used">Used</option>
+                        <option value="reconditioned">Reconditioned</option>
+                    </select>
+                    <i class="fas fa-chevron-down search-field-chevron"></i>
+                </div>
+                <div class="search-field">
+                    <label for="filterPrice">Price</label>
+                    <select class="search-field-select" id="filterPrice">
+                        <option value="">Select Price</option>
+                        <option value="low">Under LKR 15M</option>
+                        <option value="mid">LKR 15M - 30M</option>
+                        <option value="high">Above LKR 30M</option>
+                    </select>
+                    <i class="fas fa-chevron-down search-field-chevron"></i>
+                </div>
+                <button type="button" class="search-field-btn" id="searchVehicleBtn">Search Vehicle</button>
             </div>
         </div>
     </div>
@@ -136,7 +166,7 @@
         <div class="container">
             <div class="vehicle-grid" id="vehiclePageGrid">
                 <!-- 1 -->
-                <div class="vehicle-card" data-cat="car" data-brand="audi" data-price="18500000" data-fuel="petrol" data-anim>
+                <div class="vehicle-card" data-cat="car" data-brand="audi" data-year="2023" data-model="a4" data-condition="new" data-price="18500000" data-fuel="petrol" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/16288341/pexels-photo-16288341.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Audi A4" loading="lazy">
                         <span class="vehicle-badge">New Arrival</span>
@@ -153,7 +183,7 @@
                     </div>
                 </div>
                 <!-- 2 -->
-                <div class="vehicle-card" data-cat="suv" data-brand="bmw" data-price="32000000" data-fuel="diesel" data-anim>
+                <div class="vehicle-card" data-cat="suv" data-brand="bmw" data-year="2022" data-model="x5" data-condition="used" data-price="32000000" data-fuel="diesel" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/12532746/pexels-photo-12532746.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="BMW X5" loading="lazy">
                         <span class="vehicle-badge hot">Hot Deal</span>
@@ -170,7 +200,7 @@
                     </div>
                 </div>
                 <!-- 3 -->
-                <div class="vehicle-card" data-cat="car" data-brand="bmw" data-price="22500000" data-fuel="petrol" data-anim>
+                <div class="vehicle-card" data-cat="car" data-brand="bmw" data-year="2023" data-model="3-series" data-condition="reconditioned" data-price="22500000" data-fuel="petrol" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/17601809/pexels-photo-17601809.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="BMW 3 Series" loading="lazy">
                         <span class="vehicle-badge">Premium</span>
@@ -187,7 +217,7 @@
                     </div>
                 </div>
                 <!-- 4 -->
-                <div class="vehicle-card" data-cat="suv" data-brand="landrover" data-price="45000000" data-fuel="diesel" data-anim>
+                <div class="vehicle-card" data-cat="suv" data-brand="landrover" data-year="2022" data-model="range-rover-sport" data-condition="used" data-price="45000000" data-fuel="diesel" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/10820126/pexels-photo-10820126.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Range Rover" loading="lazy">
                         <span class="vehicle-badge hot">Hot Deal</span>
@@ -204,7 +234,7 @@
                     </div>
                 </div>
                 <!-- 5 -->
-                <div class="vehicle-card" data-cat="car" data-brand="mercedes" data-price="27800000" data-fuel="petrol" data-anim>
+                <div class="vehicle-card" data-cat="car" data-brand="mercedes" data-year="2023" data-model="c200" data-condition="reconditioned" data-price="27800000" data-fuel="petrol" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/12960439/pexels-photo-12960439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Mercedes C200" loading="lazy">
                         <span class="vehicle-badge">Luxury</span>
@@ -221,7 +251,7 @@
                     </div>
                 </div>
                 <!-- 6 -->
-                <div class="vehicle-card" data-cat="van" data-brand="toyota" data-price="14200000" data-fuel="diesel" data-anim>
+                <div class="vehicle-card" data-cat="van" data-brand="toyota" data-year="2021" data-model="hiace" data-condition="used" data-price="14200000" data-fuel="diesel" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/4391469/pexels-photo-4391469.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Toyota HiAce" loading="lazy">
                         <span class="vehicle-badge">Best Seller</span>
@@ -238,7 +268,7 @@
                     </div>
                 </div>
                 <!-- 7 -->
-                <div class="vehicle-card" data-cat="doublecab" data-brand="ford" data-price="19500000" data-fuel="diesel" data-anim>
+                <div class="vehicle-card" data-cat="doublecab" data-brand="ford" data-year="2022" data-model="ranger" data-condition="used" data-price="19500000" data-fuel="diesel" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/12021863/pexels-photo-12021863.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Ford Ranger" loading="lazy">
                         <span class="vehicle-badge">Popular</span>
@@ -255,7 +285,7 @@
                     </div>
                 </div>
                 <!-- 8 -->
-                <div class="vehicle-card" data-cat="car" data-brand="toyota" data-price="12800000" data-fuel="hybrid" data-anim>
+                <div class="vehicle-card" data-cat="car" data-brand="toyota" data-year="2023" data-model="corolla" data-condition="reconditioned" data-price="12800000" data-fuel="hybrid" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/6706311/pexels-photo-6706311.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Corolla" loading="lazy">
                         <span class="vehicle-badge">Value Pick</span>
@@ -272,7 +302,7 @@
                     </div>
                 </div>
                 <!-- 9 -->
-                <div class="vehicle-card" data-cat="suv" data-brand="vw" data-price="28500000" data-fuel="diesel" data-anim>
+                <div class="vehicle-card" data-cat="suv" data-brand="vw" data-year="2022" data-model="touareg" data-condition="reconditioned" data-price="28500000" data-fuel="diesel" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/16646416/pexels-photo-16646416.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="VW Touareg" loading="lazy">
                         <span class="vehicle-badge">Premium</span>
@@ -289,7 +319,7 @@
                     </div>
                 </div>
                 <!-- 10 -->
-                <div class="vehicle-card" data-cat="van" data-brand="mercedes" data-price="21000000" data-fuel="diesel" data-anim>
+                <div class="vehicle-card" data-cat="van" data-brand="mercedes" data-year="2023" data-model="vito" data-condition="reconditioned" data-price="21000000" data-fuel="diesel" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/36377071/pexels-photo-36377071.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Mercedes Vito" loading="lazy">
                         <span class="vehicle-badge">Luxury</span>
@@ -306,7 +336,7 @@
                     </div>
                 </div>
                 <!-- 11 -->
-                <div class="vehicle-card" data-cat="doublecab" data-brand="toyota" data-price="17900000" data-fuel="diesel" data-anim>
+                <div class="vehicle-card" data-cat="doublecab" data-brand="toyota" data-year="2022" data-model="hilux" data-condition="used" data-price="17900000" data-fuel="diesel" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/12021856/pexels-photo-12021856.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Toyota Hilux" loading="lazy">
                         <span class="vehicle-badge hot">Hot Deal</span>
@@ -323,7 +353,7 @@
                     </div>
                 </div>
                 <!-- 12 -->
-                <div class="vehicle-card" data-cat="car" data-brand="mitsubishi" data-price="16500000" data-fuel="petrol" data-anim>
+                <div class="vehicle-card" data-cat="car" data-brand="mitsubishi" data-year="2019" data-model="lancer-evo-x" data-condition="used" data-price="16500000" data-fuel="petrol" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/24017320/pexels-photo-24017320.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Lancer Evo" loading="lazy">
                         <span class="vehicle-badge">Sport</span>
@@ -340,7 +370,7 @@
                     </div>
                 </div>
                 <!-- 13 -->
-                <div class="vehicle-card" data-cat="suv" data-brand="honda" data-price="13500000" data-fuel="petrol" data-anim>
+                <div class="vehicle-card" data-cat="suv" data-brand="honda" data-year="2023" data-model="hr-v" data-condition="used" data-price="13500000" data-fuel="petrol" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/16816785/pexels-photo-16816785.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Honda HR-V" loading="lazy">
                         <span class="vehicle-badge">Popular</span>
@@ -357,7 +387,7 @@
                     </div>
                 </div>
                 <!-- 14 -->
-                <div class="vehicle-card" data-cat="car" data-brand="nissan" data-price="11500000" data-fuel="hybrid" data-anim>
+                <div class="vehicle-card" data-cat="car" data-brand="nissan" data-year="2022" data-model="sylphy" data-condition="used" data-price="11500000" data-fuel="hybrid" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/19868900/pexels-photo-19868900.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Subaru" loading="lazy">
                         <span class="vehicle-badge">Eco</span>
@@ -374,7 +404,7 @@
                     </div>
                 </div>
                 <!-- 15 -->
-                <div class="vehicle-card" data-cat="doublecab" data-brand="ford" data-price="23000000" data-fuel="diesel" data-anim>
+                <div class="vehicle-card" data-cat="doublecab" data-brand="ford" data-year="2023" data-model="ranger-wildtrak" data-condition="new" data-price="23000000" data-fuel="diesel" data-anim>
                     <div class="vehicle-card-img">
                         <img src="https://images.pexels.com/photos/30065548/pexels-photo-30065548.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=600" alt="Ford" loading="lazy">
                         <span class="vehicle-badge">New</span>
@@ -400,7 +430,7 @@
             <div class="footer-col">
                 <div class="footer-logo">
                     <span class="logo-icon"><i class="fas fa-car-side"></i></span>
-                    <div class="logo-text"><span class="logo-name">INDRA</span><span class="logo-sub">TRADERS</span></div>
+                    <div class="logo-text"><span class="logo-name">SKARA</span><span class="logo-sub">TRADERS</span></div>
                 </div>
                 <p>Sri Lanka's premier vehicle dealership offering the finest selection of quality vehicles since 2009.</p>
                 <div class="footer-social">
@@ -436,13 +466,13 @@
                 <div class="footer-contact">
                     <p><i class="fas fa-map-marker-alt"></i> No. 245, Kandy Road, Kadawatha, Sri Lanka</p>
                     <p><i class="fas fa-phone-alt"></i> +94 77 123 4567</p>
-                    <p><i class="fas fa-envelope"></i> info@indratraders.lk</p>
+                    <p><i class="fas fa-envelope"></i> info@skaratrader.lk</p>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="container footer-bottom-inner">
-                <p>&copy; 2025 Indra Traders. All Rights Reserved.</p>
+                <p>&copy; 2025 SKARA TRADERS. All Rights Reserved.</p>
                 <div class="footer-bottom-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms & Conditions</a>
