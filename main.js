@@ -2,7 +2,302 @@
    SKARA TRADERS - Main JavaScript
    ============================================ */
 
+const VEHICLE_CATALOG = {
+    'a4': {
+        title: 'Audi A4 S-Line 2023', hero: 'Audi A4', year: '2023', price: 'LKR 18,500,000', priceNum: 18500000,
+        badge: 'New Arrival', image: 'https://images.pexels.com/photos/16288341/pexels-photo-16288341.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '25,000 km', fuel: 'Petrol', trans: 'Automatic', condition: 'New',
+        desc: 'Experience luxury and performance with the Audi A4 S-Line. Turbocharged engine, premium leather interior, and advanced driver-assist systems.',
+        make: 'Audi', model: 'A4 S-Line', engine: '2000 cc (2.0L TFSI)', body: 'Sedan', color: 'Glacier White',
+        features: ['Apple CarPlay & Android Auto', 'Sunroof', 'Premium Leather Seats', '360 Reverse Camera', 'Parking Sensors', 'Adaptive Cruise Control']
+    },
+    'x5': {
+        title: 'BMW X5 2022', hero: 'BMW X5', year: '2022', price: 'LKR 32,000,000', priceNum: 32000000,
+        badge: 'Hot Deal', image: 'https://images.pexels.com/photos/12532746/pexels-photo-12532746.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '18,000 km', fuel: 'Diesel', trans: 'Automatic', condition: 'Used',
+        desc: 'Premium BMW X5 SUV with powerful diesel engine, spacious interior, and full option package. Excellent condition with service history.',
+        make: 'BMW', model: 'X5', engine: '3000 cc Diesel', body: 'SUV', color: 'Black Sapphire',
+        features: ['Panoramic Sunroof', 'Leather Interior', 'Navigation System', 'Reverse Camera', 'Heated Seats', 'xDrive AWD']
+    },
+    '3-series': {
+        title: 'BMW 3 Series 2023', hero: 'BMW 3 Series', year: '2023', price: 'LKR 22,500,000', priceNum: 22500000,
+        badge: 'Premium', image: 'https://images.pexels.com/photos/17601809/pexels-photo-17601809.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '12,000 km', fuel: 'Petrol', trans: 'Automatic', condition: 'Reconditioned',
+        desc: 'Sporty BMW 3 Series sedan with dynamic handling, premium cabin, and efficient petrol engine. Low mileage and immaculate condition.',
+        make: 'BMW', model: '3 Series', engine: '2000 cc Turbo Petrol', body: 'Sedan', color: 'Alpine White',
+        features: ['Sport Package', 'Digital Cockpit', 'LED Headlights', 'Parking Assist', 'Cruise Control', 'Bluetooth Audio']
+    },
+    'range-rover-sport': {
+        title: 'Range Rover Sport 2022', hero: 'Range Rover Sport', year: '2022', price: 'LKR 45,000,000', priceNum: 45000000,
+        badge: 'Hot Deal', image: 'https://images.pexels.com/photos/10820126/pexels-photo-10820126.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '30,000 km', fuel: 'Diesel', trans: 'Automatic', condition: 'Used',
+        desc: 'Luxury Range Rover Sport with commanding road presence, premium terrain response system, and executive interior finish.',
+        make: 'Land Rover', model: 'Range Rover Sport', engine: '3000 cc Diesel', body: 'SUV', color: 'Santorini Black',
+        features: ['Terrain Response', 'Meridian Sound', 'Air Suspension', 'Panoramic Roof', 'Ventilated Seats', '360 Camera']
+    },
+    'c200': {
+        title: 'Mercedes-Benz C200 2023', hero: 'Mercedes C200', year: '2023', price: 'LKR 27,800,000', priceNum: 27800000,
+        badge: 'Luxury', image: 'https://images.pexels.com/photos/12960439/pexels-photo-12960439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '8,000 km', fuel: 'Petrol', trans: 'Automatic', condition: 'Reconditioned',
+        desc: 'Elegant Mercedes-Benz C200 with refined comfort, advanced MBUX infotainment, and smooth turbocharged performance.',
+        make: 'Mercedes-Benz', model: 'C200', engine: '1500 cc Turbo Petrol', body: 'Sedan', color: 'Obsidian Black',
+        features: ['MBUX Infotainment', 'Ambient Lighting', 'Leather Seats', 'Keyless Go', 'Active Brake Assist', 'Dual Zone AC']
+    },
+    'hiace': {
+        title: 'Toyota HiAce 2021', hero: 'Toyota HiAce', year: '2021', price: 'LKR 14,200,000', priceNum: 14200000,
+        badge: 'Best Seller', image: 'https://images.pexels.com/photos/4391469/pexels-photo-4391469.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '45,000 km', fuel: 'Diesel', trans: 'Manual', condition: 'Used',
+        desc: 'Reliable Toyota HiAce van ideal for business and passenger transport. Spacious cabin, proven diesel engine, and low running costs.',
+        make: 'Toyota', model: 'HiAce', engine: '2800 cc Diesel', body: 'Van', color: 'White',
+        features: ['Dual AC', 'Sliding Doors', 'High Roof', 'ABS Brakes', 'Power Steering', '15 Seater Capacity']
+    },
+    'ranger': {
+        title: 'Ford Ranger 2022', hero: 'Ford Ranger', year: '2022', price: 'LKR 19,500,000', priceNum: 19500000,
+        badge: 'Popular', image: 'https://images.pexels.com/photos/12021863/pexels-photo-12021863.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '32,000 km', fuel: 'Diesel', trans: 'Automatic', condition: 'Used',
+        desc: 'Tough Ford Ranger double cab built for work and adventure. Strong towing capacity, modern tech, and rugged reliability.',
+        make: 'Ford', model: 'Ranger', engine: '3200 cc Diesel', body: 'Double Cab', color: 'Metallic Grey',
+        features: ['4x4 Capability', 'Touchscreen Display', 'Reverse Camera', 'Bed Liner', 'Side Steps', 'Cruise Control']
+    },
+    'corolla': {
+        title: 'Toyota Corolla 2023', hero: 'Toyota Corolla', year: '2023', price: 'LKR 12,800,000', priceNum: 12800000,
+        badge: 'Value Pick', image: 'https://images.pexels.com/photos/6706311/pexels-photo-6706311.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '15,000 km', fuel: 'Hybrid', trans: 'Automatic', condition: 'Reconditioned',
+        desc: 'Fuel-efficient Toyota Corolla Hybrid perfect for daily commuting. Excellent economy, comfortable ride, and Toyota reliability.',
+        make: 'Toyota', model: 'Corolla', engine: '1800 cc Hybrid', body: 'Sedan', color: 'Silver Metallic',
+        features: ['Hybrid System', 'Toyota Safety Sense', 'Reverse Camera', 'Bluetooth', 'Auto Climate', 'Push Start']
+    },
+    'touareg': {
+        title: 'VW Touareg 2022', hero: 'VW Touareg', year: '2022', price: 'LKR 28,500,000', priceNum: 28500000,
+        badge: 'Premium', image: 'https://images.pexels.com/photos/16646416/pexels-photo-16646416.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '22,000 km', fuel: 'Diesel', trans: 'Automatic', condition: 'Reconditioned',
+        desc: 'Premium Volkswagen Touareg SUV with refined ride quality, advanced 4Motion AWD, and luxurious cabin appointments.',
+        make: 'Volkswagen', model: 'Touareg', engine: '3000 cc Diesel', body: 'SUV', color: 'Deep Black',
+        features: ['4Motion AWD', 'Digital Cockpit', 'Adaptive Air Suspension', 'LED Matrix Lights', 'Premium Audio', 'Lane Assist']
+    },
+    'vito': {
+        title: 'Mercedes Vito 2023', hero: 'Mercedes Vito', year: '2023', price: 'LKR 21,000,000', priceNum: 21000000,
+        badge: 'Luxury', image: 'https://images.pexels.com/photos/36377071/pexels-photo-36377071.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '10,000 km', fuel: 'Diesel', trans: 'Automatic', condition: 'Reconditioned',
+        desc: 'Executive Mercedes Vito van with premium passenger comfort, ideal for corporate transport and family travel.',
+        make: 'Mercedes-Benz', model: 'Vito', engine: '2200 cc Diesel', body: 'Van', color: 'Arctic White',
+        features: ['Captain Seats', 'Rear AC Vents', 'Electric Sliding Door', 'Cruise Control', 'Parking Sensors', '8 Seater']
+    },
+    'hilux': {
+        title: 'Toyota Hilux 2022', hero: 'Toyota Hilux', year: '2022', price: 'LKR 17,900,000', priceNum: 17900000,
+        badge: 'Hot Deal', image: 'https://images.pexels.com/photos/12021856/pexels-photo-12021856.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '28,000 km', fuel: 'Diesel', trans: 'Manual', condition: 'Used',
+        desc: 'Legendary Toyota Hilux double cab known for durability and resale value. Perfect for commercial and personal use.',
+        make: 'Toyota', model: 'Hilux', engine: '2800 cc Diesel', body: 'Double Cab', color: 'White',
+        features: ['4x4 Drive', 'Deck Liner', 'Side Steps', 'ABS & EBD', 'Power Windows', 'Heavy Duty Suspension']
+    },
+    'lancer-evo-x': {
+        title: 'Mitsubishi Lancer Evo X 2019', hero: 'Lancer Evo X', year: '2019', price: 'LKR 16,500,000', priceNum: 16500000,
+        badge: 'Sport', image: 'https://images.pexels.com/photos/24017320/pexels-photo-24017320.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '42,000 km', fuel: 'Petrol', trans: 'Manual', condition: 'Used',
+        desc: 'Iconic Mitsubishi Lancer Evolution X with turbocharged performance and rally-bred handling. A true enthusiast vehicle.',
+        make: 'Mitsubishi', model: 'Lancer Evo X', engine: '2000 cc Turbo', body: 'Sedan', color: 'Octane Blue',
+        features: ['Twin Clutch SST', 'Recaro Seats', 'Brembo Brakes', 'Active Yaw Control', 'Turbo Boost Gauge', 'Sport Exhaust']
+    },
+    'hr-v': {
+        title: 'Honda HR-V 2023', hero: 'Honda HR-V', year: '2023', price: 'LKR 13,500,000', priceNum: 13500000,
+        badge: 'Popular', image: 'https://images.pexels.com/photos/16816785/pexels-photo-16816785.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '20,000 km', fuel: 'Petrol', trans: 'Automatic', condition: 'Used',
+        desc: 'Compact Honda HR-V crossover with versatile Magic Seats, excellent fuel economy, and Honda reliability.',
+        make: 'Honda', model: 'HR-V', engine: '1500 cc Petrol', body: 'SUV', color: 'Platinum White',
+        features: ['Magic Seats', 'Honda Sensing', 'Reverse Camera', 'Touchscreen Audio', 'Auto AC', 'LED Headlights']
+    },
+    'sylphy': {
+        title: 'Nissan Sylphy 2022', hero: 'Nissan Sylphy', year: '2022', price: 'LKR 11,500,000', priceNum: 11500000,
+        badge: 'Eco', image: 'https://images.pexels.com/photos/19868900/pexels-photo-19868900.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '18,000 km', fuel: 'Hybrid', trans: 'Automatic', condition: 'Used',
+        desc: 'Comfortable Nissan Sylphy sedan with spacious rear legroom, smooth hybrid drive, and excellent fuel efficiency.',
+        make: 'Nissan', model: 'Sylphy', engine: '1200 cc Hybrid', body: 'Sedan', color: 'Pearl White',
+        features: ['e-POWER Hybrid', 'Spacious Cabin', 'Around View Monitor', 'Keyless Entry', 'Cruise Control', 'ISOFIX Mounts']
+    },
+    'ranger-wildtrak': {
+        title: 'Ford Ranger Wildtrak 2023', hero: 'Ranger Wildtrak', year: '2023', price: 'LKR 23,000,000', priceNum: 23000000,
+        badge: 'New', image: 'https://images.pexels.com/photos/12021863/pexels-photo-12021863.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '5,000 km', fuel: 'Diesel', trans: 'Automatic', condition: 'New',
+        desc: 'Top-spec Ford Ranger Wildtrak with orange accents, premium interior, and full off-road capability. Nearly brand new condition.',
+        make: 'Ford', model: 'Ranger Wildtrak', engine: '3200 cc Bi-Turbo Diesel', body: 'Double Cab', color: 'Shadow Black',
+        features: ['Wildtrak Styling', 'SYNC 4 Infotainment', '360 Camera', 'LED Light Bar', 'Leather Seats', 'Off-Road Pack']
+    },
+    'isuzu-nqr': {
+        title: 'Isuzu NQR 2021', hero: 'Isuzu NQR', year: '2021', price: 'LKR 16,500,000', priceNum: 16500000,
+        badge: 'Heavy Duty', image: 'https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        km: '65,000 km', fuel: 'Diesel', trans: 'Manual', condition: 'Used',
+        desc: 'Dependable Isuzu NQR truck built for commercial hauling. Strong diesel engine, high payload capacity, and proven durability.',
+        make: 'Isuzu', model: 'NQR', engine: '5200 cc Diesel', body: 'Truck', color: 'White',
+        features: ['High Payload', 'Power Steering', 'Air Brakes', 'Dual Rear Wheels', 'Steel Cargo Bed', 'Fleet Maintained']
+    }
+};
+
+const VEHICLE_TITLE_MAP = {
+    'Audi A4 2023': 'a4',
+    'BMW X5 2022': 'x5',
+    'BMW 3 Series 2023': '3-series',
+    'Range Rover Sport 2022': 'range-rover-sport',
+    'Mercedes-Benz C200 2023': 'c200',
+    'Toyota HiAce 2021': 'hiace',
+    'Ford Ranger 2022': 'ranger',
+    'Toyota Corolla 2023': 'corolla',
+    'VW Touareg 2022': 'touareg',
+    'Mercedes Vito 2023': 'vito',
+    'Toyota Hilux 2022': 'hilux',
+    'Mitsubishi Lancer Evo X': 'lancer-evo-x',
+    'Isuzu NQR 2021': 'isuzu-nqr'
+};
+
+function getVehicleIdFromCard(card) {
+    if (card.dataset.model) return card.dataset.model;
+    const title = card.querySelector('.vehicle-card-body h3')?.textContent?.trim();
+    return VEHICLE_TITLE_MAP[title] || 'a4';
+}
+
+function initVehicleExploreLinks() {
+    document.querySelectorAll('#vehicleGrid .vehicle-card, #vehiclePageGrid .vehicle-card').forEach(card => {
+        const vehicleId = getVehicleIdFromCard(card);
+        const detailUrl = `vehicle-detail.html?vehicle=${encodeURIComponent(vehicleId)}`;
+
+        const overlayLink = card.querySelector('.vehicle-overlay a');
+        if (overlayLink) {
+            overlayLink.href = detailUrl;
+            overlayLink.textContent = 'Explore More';
+        }
+
+        if (!card.querySelector('.vehicle-explore-more')) {
+            const body = card.querySelector('.vehicle-card-body');
+            if (!body) return;
+            const link = document.createElement('a');
+            link.className = 'vehicle-explore-more';
+            link.href = detailUrl;
+            link.innerHTML = 'Explore More <i class="fas fa-arrow-right"></i>';
+            body.appendChild(link);
+        } else {
+            card.querySelector('.vehicle-explore-more').href = detailUrl;
+        }
+    });
+}
+
+function loadVehicleDetailPage() {
+    if (!document.querySelector('.vehicle-detail-section')) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const vehicleId = params.get('vehicle') || 'a4';
+    const data = VEHICLE_CATALOG[vehicleId] || VEHICLE_CATALOG.a4;
+
+    document.title = `${data.title} | SKARA TRADERS`;
+
+    const heroBg = document.getElementById('detailHeroBg');
+    const heroTitle = document.getElementById('detailHeroTitle');
+    const breadcrumb = document.getElementById('detailBreadcrumb');
+    if (heroBg) heroBg.style.backgroundImage = `url('${data.image}')`;
+    if (heroTitle) heroTitle.innerHTML = `${data.hero} <span class="gold">${data.year}</span>`;
+    if (breadcrumb) breadcrumb.textContent = data.hero;
+
+    const badge = document.getElementById('detailBadge');
+    const title = document.getElementById('detailTitle');
+    const priceDisplay = document.getElementById('detailPriceDisplay');
+    const desc = document.getElementById('detailDesc');
+    if (badge) badge.textContent = data.badge;
+    if (title) title.textContent = data.title;
+    if (priceDisplay) priceDisplay.textContent = data.price;
+    if (desc) desc.textContent = data.desc;
+
+    const yearEl = document.getElementById('detailYear');
+    const kmEl = document.getElementById('detailKm');
+    const fuelEl = document.getElementById('detailFuel');
+    const transEl = document.getElementById('detailTrans');
+    if (yearEl) yearEl.textContent = data.year;
+    if (kmEl) kmEl.textContent = data.km;
+    if (fuelEl) fuelEl.textContent = data.fuel;
+    if (transEl) transEl.textContent = data.trans;
+
+    const specsList = document.getElementById('detailSpecsList');
+    if (specsList) {
+        specsList.innerHTML = `
+            <li><span>Make</span><span>${data.make}</span></li>
+            <li><span>Model</span><span>${data.model}</span></li>
+            <li><span>Year of Manufacture</span><span>${data.year}</span></li>
+            <li><span>Engine Capacity</span><span>${data.engine}</span></li>
+            <li><span>Transmission</span><span>${data.trans}</span></li>
+            <li><span>Body Type</span><span>${data.body}</span></li>
+            <li><span>Color</span><span>${data.color}</span></li>
+            <li><span>Condition</span><span>${data.condition}</span></li>
+            <li><span>Mileage</span><span>${data.km}</span></li>
+            <li><span>Fuel Type</span><span>${data.fuel}</span></li>
+        `;
+    }
+
+    const featuresGrid = document.getElementById('detailFeatures');
+    if (featuresGrid) {
+        featuresGrid.innerHTML = data.features
+            .map(f => `<span><i class="fas fa-check-circle"></i> ${f}</span>`)
+            .join('');
+    }
+
+    document.querySelectorAll('.gallery-main img').forEach(img => { img.src = data.image; });
+    document.querySelectorAll('.gallery-thumbs img').forEach(img => {
+        img.src = data.image.replace('h=600', 'h=150').replace('w=800', 'w=200');
+    });
+
+    const detailPrice = document.getElementById('detailPrice');
+    if (detailPrice) detailPrice.value = data.priceNum.toLocaleString();
+
+    window.__detailVehiclePrice = data.priceNum;
+}
+
+function initDetailGallery() {
+    if (!document.querySelector('.gallery-main')) return;
+
+    const thumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true
+    });
+
+    new Swiper('.gallery-main', {
+        spaceBetween: 10,
+        navigation: { nextEl: '.gallery-main .swiper-button-next', prevEl: '.gallery-main .swiper-button-prev' },
+        thumbs: { swiper: thumbs }
+    });
+}
+
+function initDetailLeaseCalc() {
+    const detailPrice = document.getElementById('detailPrice');
+    const detailDown = document.getElementById('detailDownPayment');
+    const detailPeriod = document.getElementById('detailPeriod');
+    const detailRate = document.getElementById('detailRate');
+    const detailMonthly = document.getElementById('detailMonthly');
+    if (!detailPrice || !detailMonthly) return;
+
+    function updateDetailCalc() {
+        const price = window.__detailVehiclePrice || parseInt(String(detailPrice.value).replace(/,/g, ''), 10) || 0;
+        const down = parseInt(detailDown?.value, 10) || 0;
+        const years = parseInt(detailPeriod?.value, 10) || 5;
+        const rate = (parseFloat(detailRate?.value) || 14.5) / 100 / 12;
+        const months = years * 12;
+        const loan = Math.max(price - down, 0);
+        let monthly = 0;
+        if (rate > 0 && months > 0 && loan > 0) {
+            monthly = loan * (rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
+        }
+        detailMonthly.textContent = 'LKR ' + Math.round(monthly).toLocaleString();
+    }
+
+    [detailDown, detailPeriod, detailRate].forEach(el => el?.addEventListener('input', updateDetailCalc));
+    [detailDown, detailPeriod, detailRate].forEach(el => el?.addEventListener('change', updateDetailCalc));
+    updateDetailCalc();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    loadVehicleDetailPage();
+    initDetailGallery();
+    initDetailLeaseCalc();
+    initVehicleExploreLinks();
 
     // ==========================================
     // 1. STICKY HEADER
@@ -50,6 +345,48 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger?.classList.remove('active');
             mobileMenu?.classList.remove('active');
             document.body.style.overflow = '';
+        });
+    });
+
+    document.querySelectorAll('.mobile-promo-card, .mobile-promo-view-all').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger?.classList.remove('active');
+            mobileMenu?.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // ==========================================
+    // 2b. PROMOTIONS DROPDOWN
+    // ==========================================
+    const promoDropdown = document.getElementById('promoDropdown');
+    const promoTrigger = promoDropdown?.querySelector('.nav-dropdown-trigger');
+
+    promoTrigger?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = promoDropdown.classList.toggle('open');
+        promoTrigger.setAttribute('aria-expanded', isOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+        if (promoDropdown && !promoDropdown.contains(e.target)) {
+            promoDropdown.classList.remove('open');
+            promoTrigger?.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && promoDropdown?.classList.contains('open')) {
+            promoDropdown.classList.remove('open');
+            promoTrigger?.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    promoDropdown?.querySelectorAll('.promo-vehicle-card, .promo-dropdown-all').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.stopPropagation();
+            promoDropdown.classList.remove('open');
+            promoTrigger?.setAttribute('aria-expanded', 'false');
         });
     });
 
@@ -381,37 +718,136 @@ document.addEventListener('DOMContentLoaded', () => {
     // 13. VEHICLE PAGE FILTER (vehicles.html)
     // ==========================================
     const searchVehicleBtn = document.getElementById('searchVehicleBtn');
+    const filterMake = document.getElementById('filterMake');
+    const filterModel = document.getElementById('filterModel');
     const vehiclePageCards = document.querySelectorAll('#vehiclePageGrid .vehicle-card');
+    const vehicleNoResults = document.getElementById('vehicleNoResults');
+    const vehicleResultCount = document.getElementById('vehicleResultCount');
+
+    const makeLabels = {
+        toyota: 'Toyota', bmw: 'BMW', mercedes: 'Mercedes', audi: 'Audi',
+        honda: 'Honda', nissan: 'Nissan', ford: 'Ford', vw: 'Volkswagen',
+        mitsubishi: 'Mitsubishi', landrover: 'Land Rover'
+    };
+
+    const modelLabels = {
+        a4: 'A4', x5: 'X5', '3-series': '3 Series', 'range-rover-sport': 'Range Rover Sport',
+        c200: 'C200', hiace: 'HiAce', ranger: 'Ranger', corolla: 'Corolla',
+        touareg: 'Touareg', vito: 'Vito', hilux: 'Hilux', 'lancer-evo-x': 'Lancer Evo X',
+        'hr-v': 'HR-V', sylphy: 'Sylphy', 'ranger-wildtrak': 'Ranger Wildtrak'
+    };
+
+    const conditionLabels = {
+        new: 'New', used: 'Used', reconditioned: 'Reconditioned'
+    };
+
+    function enrichVehicleCards() {
+        vehiclePageCards.forEach(card => {
+            const body = card.querySelector('.vehicle-card-body');
+            if (!body || body.querySelector('.vehicle-filter-info')) return;
+
+            const year = card.dataset.year || '';
+            const make = makeLabels[card.dataset.brand] || card.dataset.brand || '';
+            const model = modelLabels[card.dataset.model] || card.dataset.model || '';
+            const condition = conditionLabels[card.dataset.condition] || card.dataset.condition || '';
+
+            const meta = document.createElement('p');
+            meta.className = 'vehicle-filter-info';
+            meta.innerHTML = `
+                <span>Year: ${year}</span>
+                <span>Make: ${make}</span>
+                <span>Model: ${model}</span>
+                <span>Condition: ${condition}</span>
+            `;
+
+            const title = body.querySelector('h3');
+            if (title) title.after(meta);
+        });
+    }
+
+    const allModelOptions = filterModel
+        ? Array.from(filterModel.options).slice(1).map(opt => ({
+            value: opt.value,
+            text: opt.textContent,
+            make: opt.dataset.make || ''
+        }))
+        : [];
+
+    function updateModelOptions() {
+        if (!filterModel) return;
+
+        const selectedMake = filterMake?.value || '';
+        const currentModel = filterModel.value;
+
+        filterModel.innerHTML = '<option value="">Select Model</option>';
+        allModelOptions
+            .filter(opt => !selectedMake || opt.make === selectedMake)
+            .forEach(opt => {
+                const option = document.createElement('option');
+                option.value = opt.value;
+                option.textContent = opt.text;
+                option.dataset.make = opt.make;
+                filterModel.appendChild(option);
+            });
+
+        if (currentModel && [...filterModel.options].some(o => o.value === currentModel)) {
+            filterModel.value = currentModel;
+        }
+    }
+
+    function matchesPriceRange(priceValue, cardPrice) {
+        if (!priceValue) return true;
+        if (priceValue === 'low') return cardPrice <= 15000000;
+        if (priceValue === 'mid') return cardPrice > 15000000 && cardPrice <= 30000000;
+        if (priceValue === 'high') return cardPrice > 30000000;
+        return true;
+    }
 
     function filterVehicles() {
         const year = document.getElementById('filterYear')?.value || '';
-        const make = document.getElementById('filterMake')?.value?.toLowerCase() || '';
-        const model = document.getElementById('filterModel')?.value?.toLowerCase() || '';
-        const condition = document.getElementById('filterCondition')?.value?.toLowerCase() || '';
+        const make = filterMake?.value || '';
+        const model = filterModel?.value || '';
+        const condition = document.getElementById('filterCondition')?.value || '';
         const price = document.getElementById('filterPrice')?.value || '';
+
+        let visibleCount = 0;
 
         vehiclePageCards.forEach(card => {
             const cardYear = card.dataset.year || '';
             const cardBrand = card.dataset.brand || '';
             const cardModel = card.dataset.model || '';
             const cardCondition = card.dataset.condition || '';
-            const cardPrice = parseInt(card.dataset.price) || 0;
+            const cardPrice = parseInt(card.dataset.price, 10) || 0;
 
-            let show = true;
-            if (year && cardYear !== year) show = false;
-            if (make && cardBrand !== make) show = false;
-            if (model && cardModel !== model) show = false;
-            if (condition && cardCondition !== condition) show = false;
-            if (price === 'low' && cardPrice > 15000000) show = false;
-            if (price === 'mid' && (cardPrice < 15000000 || cardPrice > 30000000)) show = false;
-            if (price === 'high' && cardPrice < 30000000) show = false;
+            const show =
+                (!year || cardYear === year) &&
+                (!make || cardBrand === make) &&
+                (!model || cardModel === model) &&
+                (!condition || cardCondition === condition) &&
+                matchesPriceRange(price, cardPrice);
 
             card.style.display = show ? '' : 'none';
-            if (show && typeof gsap !== 'undefined') {
-                gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+            if (show) {
+                visibleCount += 1;
+                if (typeof gsap !== 'undefined') {
+                    gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+                }
             }
         });
+
+        if (vehicleNoResults) vehicleNoResults.hidden = visibleCount > 0;
+        if (vehicleResultCount) {
+            vehicleResultCount.textContent = visibleCount
+                ? `Showing ${visibleCount} of ${vehiclePageCards.length} vehicles`
+                : '';
+        }
     }
 
+    if (vehiclePageCards.length) {
+        enrichVehicleCards();
+        filterVehicles();
+    }
+
+    if (filterMake) filterMake.addEventListener('change', updateModelOptions);
     if (searchVehicleBtn) searchVehicleBtn.addEventListener('click', filterVehicles);
 });
