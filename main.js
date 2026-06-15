@@ -5,7 +5,7 @@
 const VEHICLE_CATALOG = {
     'a4': {
         title: 'Audi A4 S-Line 2023', hero: 'Audi A4', year: '2023', price: 'LKR 18,500,000', priceNum: 18500000,
-        badge: 'New Arrival', image: 'https://images.pexels.com/photos/16288341/pexels-photo-16288341.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
+        badge: 'New Arrival', image: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=800',
         km: '25,000 km', fuel: 'Petrol', trans: 'Automatic', condition: 'New',
         desc: 'Experience luxury and performance with the Audi A4 S-Line. Turbocharged engine, premium leather interior, and advanced driver-assist systems.',
         make: 'Audi', model: 'A4 S-Line', engine: '2000 cc (2.0L TFSI)', body: 'Sedan', color: 'Glacier White',
@@ -189,12 +189,17 @@ function loadVehicleDetailPage() {
 
     document.title = `${data.title} | SKARA TRADERS`;
 
-    const heroBg = document.getElementById('detailHeroBg');
-    const heroTitle = document.getElementById('detailHeroTitle');
     const breadcrumb = document.getElementById('detailBreadcrumb');
-    if (heroBg) heroBg.style.backgroundImage = `url('${data.image}')`;
-    if (heroTitle) heroTitle.innerHTML = `${data.hero} <span class="gold">${data.year}</span>`;
     if (breadcrumb) breadcrumb.textContent = data.hero;
+
+    const mainImage = document.getElementById('detailMainImage');
+    const imageBadge = document.getElementById('detailImageBadge');
+    const heroImage = data.image.replace('h=600', 'h=900').replace('w=800', 'w=1400');
+    if (mainImage) {
+        mainImage.src = heroImage;
+        mainImage.alt = data.title;
+    }
+    if (imageBadge) imageBadge.textContent = data.badge;
 
     const badge = document.getElementById('detailBadge');
     const title = document.getElementById('detailTitle');
@@ -237,13 +242,10 @@ function loadVehicleDetailPage() {
             .join('');
     }
 
-    document.querySelectorAll('.gallery-main img').forEach(img => { img.src = data.image; });
-    document.querySelectorAll('.gallery-thumbs img').forEach(img => {
-        img.src = data.image.replace('h=600', 'h=150').replace('w=800', 'w=200');
-    });
-
     const detailPrice = document.getElementById('detailPrice');
+    const detailDown = document.getElementById('detailDownPayment');
     if (detailPrice) detailPrice.value = data.priceNum.toLocaleString();
+    if (detailDown) detailDown.value = Math.round(data.priceNum * 0.3);
 
     window.__detailVehiclePrice = data.priceNum;
 }
