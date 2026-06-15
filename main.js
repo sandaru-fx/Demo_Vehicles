@@ -332,49 +332,12 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger?.classList.remove('active');
         mobileMenu?.classList.remove('active');
         document.body.style.overflow = '';
-        document.querySelectorAll('.mobile-promo-section').forEach(section => {
-            section.classList.remove('is-open');
-            section.querySelector('.mobile-promo-label')?.setAttribute('aria-expanded', 'false');
-        });
     }
-
-    function initMobilePromoAccordion() {
-        document.querySelectorAll('.mobile-promo-section').forEach(section => {
-            const label = section.querySelector('.mobile-promo-label');
-            if (!label || label.dataset.promoInit) return;
-            label.dataset.promoInit = '1';
-            label.setAttribute('role', 'button');
-            label.setAttribute('aria-expanded', 'false');
-
-            if (!label.querySelector('.mobile-promo-arrow')) {
-                const arrow = document.createElement('i');
-                arrow.className = 'fas fa-chevron-down mobile-promo-arrow';
-                label.appendChild(arrow);
-            }
-
-            label.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const isOpen = section.classList.toggle('is-open');
-                label.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            });
-        });
-    }
-
-    initMobilePromoAccordion();
 
     hamburger?.addEventListener('click', () => {
-        const willOpen = !mobileMenu.classList.contains('active');
         hamburger.classList.toggle('active');
         mobileMenu.classList.toggle('active');
         document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-
-        if (!willOpen) {
-            document.querySelectorAll('.mobile-promo-section').forEach(section => {
-                section.classList.remove('is-open');
-                section.querySelector('.mobile-promo-label')?.setAttribute('aria-expanded', 'false');
-            });
-        }
 
         if (mobileMenu.classList.contains('active') && typeof gsap !== 'undefined') {
             gsap.fromTo(mobileLinks,
@@ -385,10 +348,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     mobileLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-
-    document.querySelectorAll('.mobile-promo-card, .mobile-promo-view-all').forEach(link => {
         link.addEventListener('click', closeMobileMenu);
     });
 
