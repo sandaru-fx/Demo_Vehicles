@@ -293,9 +293,390 @@ function slugId(title) {
     return id;
 }
 
+/* ——— Promotions store ——— */
+const SKARA_PROMOS_KEY = 'skaraPromotions';
+const SKARA_PARTS_KEY = 'skaraParts';
+
+const DEFAULT_PROMOS = {
+    'bmw-x5': {
+        title: 'BMW X5 2022',
+        vehicleId: 'x5',
+        badge: 'Hot Deal',
+        discount: 'Save 10%',
+        oldPrice: 'LKR 35,500,000',
+        newPrice: 'LKR 32,000,000',
+        oldPriceNum: 35500000,
+        newPriceNum: 32000000,
+        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/BMW_G05_X5_xDrive45e_M_Sport_Black_Sapphire_Metallic_(2).jpg?width=800',
+        status: 'live',
+        note: 'Premium SUV campaign — finance packs available on the floor.'
+    },
+    'ford-ranger': {
+        title: 'Ford Ranger Wildtrak 2023',
+        vehicleId: 'ranger-wildtrak',
+        badge: 'New Arrival',
+        discount: 'Free Service',
+        oldPrice: '',
+        newPrice: 'LKR 23,000,000',
+        oldPriceNum: 0,
+        newPriceNum: 23000000,
+        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ford_Ranger_(T6,_P703)_Wildtrak_IMG_7320.jpg?width=800',
+        status: 'live',
+        note: 'Complimentary first service pack with purchase this month.'
+    },
+    'toyota-corolla': {
+        title: 'Toyota Corolla 2023',
+        vehicleId: 'corolla',
+        badge: 'Value Pick',
+        discount: 'Best Value',
+        oldPrice: 'LKR 14,200,000',
+        newPrice: 'LKR 12,800,000',
+        oldPriceNum: 14200000,
+        newPriceNum: 12800000,
+        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Toyota_Corolla_Altis_1.8_Sport.jpg?width=800',
+        status: 'ending',
+        note: 'Hybrid commute deal — limited stock before campaign close.'
+    }
+};
+
+const DEFAULT_PARTS = {
+    'brk-fr-420': {
+        name: 'Ceramic brake kit · front',
+        category: 'brake',
+        sku: 'BRK-FR-420',
+        stock: 42,
+        price: 'LKR 48,500',
+        priceNum: 48500,
+        status: 'in-stock'
+    },
+    'brk-rr-318': {
+        name: 'OEM brake pads · rear',
+        category: 'brake',
+        sku: 'BRK-RR-318',
+        stock: 28,
+        price: 'LKR 22,000',
+        priceNum: 22000,
+        status: 'in-stock'
+    },
+    'flt-oil-90': {
+        name: 'Oil filter pack (mixed)',
+        category: 'filter',
+        sku: 'FLT-OIL-90',
+        stock: 118,
+        price: 'LKR 3,200',
+        priceNum: 3200,
+        status: 'in-stock'
+    },
+    'flt-cab-55': {
+        name: 'Cabin air filter',
+        category: 'filter',
+        sku: 'FLT-CAB-55',
+        stock: 64,
+        price: 'LKR 4,800',
+        priceNum: 4800,
+        status: 'in-stock'
+    },
+    'bdy-trim-07': {
+        name: 'Body trim set · side skirts',
+        category: 'body',
+        sku: 'BDY-TRIM-07',
+        stock: 7,
+        price: 'LKR 65,000',
+        priceNum: 65000,
+        status: 'backordered'
+    },
+    'eng-oil-5w30': {
+        name: 'Synthetic engine oil 5W-30 (4L)',
+        category: 'engine',
+        sku: 'ENG-OIL-5W30',
+        stock: 36,
+        price: 'LKR 12,500',
+        priceNum: 12500,
+        status: 'in-stock'
+    },
+    'spk-ir-16': {
+        name: 'Iridium spark plugs (set of 4)',
+        category: 'electrical',
+        sku: 'SPK-IR-16',
+        stock: 9,
+        price: 'LKR 18,900',
+        priceNum: 18900,
+        status: 'low'
+    },
+    'sus-strut-l': {
+        name: 'Front strut assembly · LH',
+        category: 'suspension',
+        sku: 'SUS-STRUT-L',
+        stock: 4,
+        price: 'LKR 78,000',
+        priceNum: 78000,
+        status: 'low'
+    }
+};
+
+function parseStoredMap(key, fallback) {
+    try {
+        const raw = JSON.parse(localStorage.getItem(key) || 'null');
+        if (raw && typeof raw === 'object' && !Array.isArray(raw)) return raw;
+    } catch (_) { /* ignore corrupt */ }
+    localStorage.setItem(key, JSON.stringify(fallback));
+    return { ...fallback };
+}
+
+function saveStoredMap(key, map) {
+    localStorage.setItem(key, JSON.stringify(map));
+}
+
+function getPromotions() {
+    return parseStoredMap(SKARA_PROMOS_KEY, DEFAULT_PROMOS);
+}
+
+function getParts() {
+    return parseStoredMap(SKARA_PARTS_KEY, DEFAULT_PARTS);
+}
+
+function formatPriceField(raw) {
+    const parse = store().parsePriceInput || ((v) => parseInt(String(v).replace(/[^\d]/g, ''), 10) || 0);
+    const format = store().formatLkr || ((n) => `LKR ${Number(n).toLocaleString()}`);
+    const num = parse(raw);
+    return { num, label: num ? format(num) : '' };
+}
+
+function promoStatusClass(status) {
+    return String(status || '').toLowerCase() === 'ending' ? 'ending' : 'live';
+}
+
+function partStatusClass(status) {
+    const s = String(status || '').toLowerCase();
+    if (s === 'low') return 'low';
+    if (s === 'backordered') return 'backordered';
+    return 'in-stock';
+}
+
+function partStatusLabel(status) {
+    const s = String(status || '').toLowerCase();
+    if (s === 'low') return 'Low stock';
+    if (s === 'backordered') return 'Back-ordered';
+    return 'In stock';
+}
+
+function renderPromosTable(filter = '') {
+    const body = qs('#promosTableBody');
+    const empty = qs('#promosEmpty');
+    const table = qs('#promosTable');
+    if (!body) return;
+
+    const q = filter.trim().toLowerCase();
+    const entries = Object.entries(getPromotions()).filter(([, p]) => {
+        if (!q) return true;
+        return `${p.title} ${p.badge} ${p.discount} ${p.status} ${p.vehicleId}`.toLowerCase().includes(q);
+    });
+
+    if (!entries.length) {
+        body.innerHTML = '';
+        const noneAtAll = Object.keys(getPromotions()).length === 0;
+        if (empty) {
+            empty.hidden = false;
+            const h = empty.querySelector('h3');
+            const p = empty.querySelector('p');
+            if (h) h.textContent = noneAtAll ? 'No promotions live' : 'No matching campaigns';
+            if (p) p.textContent = noneAtAll
+                ? 'Add a campaign tile to feature on the hot deals desk.'
+                : 'Try a different search term.';
+        }
+        if (table) table.hidden = true;
+        return;
+    }
+
+    if (empty) empty.hidden = true;
+    if (table) table.hidden = false;
+
+    body.innerHTML = entries.map(([id, p]) => {
+        const img = p.image || store().SKARA_DEFAULT_IMAGE || '';
+        const status = p.status === 'ending' ? 'ending' : 'live';
+        const prices = [
+            p.oldPrice ? `<span class="old">${p.oldPrice}</span>` : '',
+            p.newPrice ? `<span class="new">${p.newPrice}</span>` : '<span class="new">—</span>'
+        ].filter(Boolean).join('');
+        return `
+            <tr data-id="${id}">
+                <td><img class="veh-photo" src="${img}" alt=""></td>
+                <td>
+                    <strong>${p.title || id}</strong>
+                    <div style="color:var(--gray-300);font-size:0.75rem;margin-top:2px;">${p.badge || ''}${p.vehicleId ? ` · #${p.vehicleId}` : ''}</div>
+                </td>
+                <td>${p.discount || '—'}</td>
+                <td><div class="promo-prices">${prices}</div></td>
+                <td><span class="status-pill ${promoStatusClass(status)}">${status}</span></td>
+                <td>
+                    <div class="row-actions">
+                        <button type="button" class="row-btn" data-promo-edit="${id}"><i class="fas fa-pen"></i> Edit</button>
+                        <button type="button" class="row-btn delete" data-promo-del="${id}"><i class="fas fa-trash"></i> Delete</button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function renderPartsTable(filter = '') {
+    const body = qs('#partsTableBody');
+    const empty = qs('#partsEmpty');
+    const table = qs('#partsTable');
+    if (!body) return;
+
+    const q = filter.trim().toLowerCase();
+    const entries = Object.entries(getParts()).filter(([, p]) => {
+        if (!q) return true;
+        return `${p.name} ${p.category} ${p.sku} ${p.status}`.toLowerCase().includes(q);
+    });
+
+    if (!entries.length) {
+        body.innerHTML = '';
+        const noneAtAll = Object.keys(getParts()).length === 0;
+        if (empty) {
+            empty.hidden = false;
+            const h = empty.querySelector('h3');
+            const p = empty.querySelector('p');
+            if (h) h.textContent = noneAtAll ? 'No parts in the cage' : 'No matching parts';
+            if (p) p.textContent = noneAtAll
+                ? 'Add an SKU to start managing the parts counter.'
+                : 'Try a different search term.';
+        }
+        if (table) table.hidden = true;
+        return;
+    }
+
+    if (empty) empty.hidden = true;
+    if (table) table.hidden = false;
+
+    body.innerHTML = entries.map(([id, p]) => `
+        <tr data-id="${id}">
+            <td><strong>${p.name || id}</strong></td>
+            <td><span class="cat-pill">${p.category || 'other'}</span></td>
+            <td>${p.sku || '—'}</td>
+            <td>${p.stock ?? 0}</td>
+            <td>${p.price || '—'}</td>
+            <td><span class="status-pill ${partStatusClass(p.status)}">${partStatusLabel(p.status)}</span></td>
+            <td>
+                <div class="row-actions">
+                    <button type="button" class="row-btn" data-part-edit="${id}"><i class="fas fa-pen"></i> Edit</button>
+                    <button type="button" class="row-btn delete" data-part-del="${id}"><i class="fas fa-trash"></i> Delete</button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function openPromoDrawer(id, isNew = false) {
+    const drawer = qs('#promoDrawer');
+    if (!drawer) return;
+    const data = isNew ? {} : (getPromotions()[id] || {});
+
+    qs('#promoId').value = id || '';
+    qs('#promoIsNew').value = isNew ? '1' : '0';
+    qs('#promoDrawerKicker').textContent = isNew ? 'New campaign' : 'Edit campaign';
+    qs('#promoDrawerTitle').textContent = isNew ? 'Add promotion' : (data.title || 'Promotion');
+    qs('#promoTitle').value = data.title || '';
+    qs('#promoVehicleId').value = data.vehicleId || '';
+    qs('#promoBadge').value = data.badge || '';
+    qs('#promoDiscount').value = data.discount || '';
+    qs('#promoOldPrice').value = data.oldPriceNum ? String(data.oldPriceNum) : '';
+    qs('#promoNewPrice').value = data.newPriceNum ? String(data.newPriceNum) : '';
+    qs('#promoImage').value = data.image || '';
+    fillSelect(qs('#promoStatus'), data.status || 'live');
+    qs('#promoNote').value = data.note || '';
+
+    drawer.hidden = false;
+    requestAnimationFrame(() => drawer.classList.add('is-on'));
+}
+
+function closePromoDrawer() {
+    const drawer = qs('#promoDrawer');
+    if (!drawer) return;
+    drawer.classList.remove('is-on');
+    setTimeout(() => { drawer.hidden = true; }, 220);
+}
+
+function openPartDrawer(id, isNew = false) {
+    const drawer = qs('#partDrawer');
+    if (!drawer) return;
+    const data = isNew ? {} : (getParts()[id] || {});
+
+    qs('#partId').value = id || '';
+    qs('#partIsNew').value = isNew ? '1' : '0';
+    qs('#partDrawerKicker').textContent = isNew ? 'New SKU' : 'Edit part';
+    qs('#partDrawerTitle').textContent = isNew ? 'Add part' : (data.name || 'Spare part');
+    qs('#partName').value = data.name || '';
+    fillSelect(qs('#partCategory'), data.category || 'brake');
+    qs('#partSku').value = data.sku || '';
+    qs('#partStock').value = data.stock != null ? String(data.stock) : '';
+    qs('#partPrice').value = data.priceNum ? String(data.priceNum) : '';
+    fillSelect(qs('#partStatus'), data.status || 'in-stock');
+
+    drawer.hidden = false;
+    requestAnimationFrame(() => drawer.classList.add('is-on'));
+}
+
+function closePartDrawer() {
+    const drawer = qs('#partDrawer');
+    if (!drawer) return;
+    drawer.classList.remove('is-on');
+    setTimeout(() => { drawer.hidden = true; }, 220);
+}
+
+function slugFromMap(title, map, fallback = 'item') {
+    const base = (title || fallback).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || fallback;
+    let id = base;
+    let n = 2;
+    while (map[id]) id = `${base}-${n++}`;
+    return id;
+}
+
+function collectPromoFields() {
+    const oldP = formatPriceField(qs('#promoOldPrice').value);
+    const newP = formatPriceField(qs('#promoNewPrice').value);
+    return {
+        title: qs('#promoTitle').value.trim(),
+        vehicleId: qs('#promoVehicleId').value.trim(),
+        badge: qs('#promoBadge').value.trim() || 'Featured',
+        discount: qs('#promoDiscount').value.trim() || 'Deal',
+        oldPrice: oldP.label,
+        newPrice: newP.label,
+        oldPriceNum: oldP.num,
+        newPriceNum: newP.num,
+        image: qs('#promoImage').value.trim() || (store().SKARA_DEFAULT_IMAGE || ''),
+        status: qs('#promoStatus').value === 'ending' ? 'ending' : 'live',
+        note: qs('#promoNote').value.trim()
+    };
+}
+
+function collectPartFields() {
+    const price = formatPriceField(qs('#partPrice').value);
+    const stock = Math.max(0, parseInt(qs('#partStock').value, 10) || 0);
+    let status = qs('#partStatus').value;
+    if (!['in-stock', 'low', 'backordered'].includes(status)) status = 'in-stock';
+    return {
+        name: qs('#partName').value.trim(),
+        category: qs('#partCategory').value || 'other',
+        sku: qs('#partSku').value.trim().toUpperCase(),
+        stock,
+        price: price.label || 'LKR 0',
+        priceNum: price.num,
+        status
+    };
+}
+
+function activeAdminView() {
+    return qs('.admin-view.is-active')?.dataset.view || 'dashboard';
+}
+
 function refreshConsole() {
+    const q = qs('#adminSearch')?.value || '';
     renderDashboard();
-    renderVehiclesTable(qs('#adminSearch')?.value || '');
+    renderVehiclesTable(q);
+    renderPromosTable(q);
+    renderPartsTable(q);
 }
 
 function initAdminConsole() {
@@ -339,13 +720,28 @@ function initAdminConsole() {
 
     qs('#adminSearch')?.addEventListener('input', (e) => {
         const q = e.target.value;
-        if (q.trim()) showView('vehicles');
+        const view = activeAdminView();
+        if (q.trim() && !['vehicles', 'promotions', 'parts'].includes(view)) {
+            showView('vehicles');
+        }
         renderVehiclesTable(q);
+        renderPromosTable(q);
+        renderPartsTable(q);
     });
 
     qs('#addVehicleBtn')?.addEventListener('click', () => {
         showView('vehicles');
         openDrawer('', true);
+    });
+
+    qs('#addPromoBtn')?.addEventListener('click', () => {
+        showView('promotions');
+        openPromoDrawer('', true);
+    });
+
+    qs('#addPartBtn')?.addEventListener('click', () => {
+        showView('parts');
+        openPartDrawer('', true);
     });
 
     qs('#vehiclesTableBody')?.addEventListener('click', async (e) => {
@@ -368,7 +764,53 @@ function initAdminConsole() {
         }
     });
 
+    qs('#promosTableBody')?.addEventListener('click', async (e) => {
+        const edit = e.target.closest('[data-promo-edit]');
+        const del = e.target.closest('[data-promo-del]');
+        if (edit) openPromoDrawer(edit.getAttribute('data-promo-edit'), false);
+        if (del) {
+            const id = del.getAttribute('data-promo-del');
+            const row = del.closest('tr');
+            const name = row?.querySelector('strong')?.textContent || 'this promotion';
+            const ok = await store().skaraConfirm?.({
+                title: 'Delete this campaign?',
+                message: `${name} will be removed from the hot deals desk in this browser.`,
+                confirmText: 'Delete promotion'
+            });
+            if (!ok) return;
+            const map = getPromotions();
+            delete map[id];
+            saveStoredMap(SKARA_PROMOS_KEY, map);
+            refreshConsole();
+            store().skaraToast?.('Promotion removed');
+        }
+    });
+
+    qs('#partsTableBody')?.addEventListener('click', async (e) => {
+        const edit = e.target.closest('[data-part-edit]');
+        const del = e.target.closest('[data-part-del]');
+        if (edit) openPartDrawer(edit.getAttribute('data-part-edit'), false);
+        if (del) {
+            const id = del.getAttribute('data-part-del');
+            const row = del.closest('tr');
+            const name = row?.querySelector('strong')?.textContent || 'this part';
+            const ok = await store().skaraConfirm?.({
+                title: 'Delete this part?',
+                message: `${name} will be removed from the parts counter inventory.`,
+                confirmText: 'Delete part'
+            });
+            if (!ok) return;
+            const map = getParts();
+            delete map[id];
+            saveStoredMap(SKARA_PARTS_KEY, map);
+            refreshConsole();
+            store().skaraToast?.('Part removed');
+        }
+    });
+
     qsa('[data-close-drawer]').forEach((el) => el.addEventListener('click', closeDrawer));
+    qsa('[data-close-promo-drawer]').forEach((el) => el.addEventListener('click', closePromoDrawer));
+    qsa('[data-close-part-drawer]').forEach((el) => el.addEventListener('click', closePartDrawer));
 
     qs('#vehicleForm')?.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -388,6 +830,34 @@ function initAdminConsole() {
         closeDrawer();
         refreshConsole();
         store().skaraToast?.(isNew ? 'Vehicle added to the overlay' : 'Listing saved');
+    });
+
+    qs('#promoForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const isNew = qs('#promoIsNew').value === '1';
+        const map = getPromotions();
+        let id = qs('#promoId').value;
+        const fields = collectPromoFields();
+        if (isNew) id = slugFromMap(fields.title, map, 'promo');
+        map[id] = { ...(map[id] || {}), ...fields };
+        saveStoredMap(SKARA_PROMOS_KEY, map);
+        closePromoDrawer();
+        refreshConsole();
+        store().skaraToast?.(isNew ? 'Promotion added' : 'Promotion saved');
+    });
+
+    qs('#partForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const isNew = qs('#partIsNew').value === '1';
+        const map = getParts();
+        let id = qs('#partId').value;
+        const fields = collectPartFields();
+        if (isNew) id = slugFromMap(fields.sku || fields.name, map, 'part');
+        map[id] = { ...(map[id] || {}), ...fields };
+        saveStoredMap(SKARA_PARTS_KEY, map);
+        closePartDrawer();
+        refreshConsole();
+        store().skaraToast?.(isNew ? 'Part added to inventory' : 'Part saved');
     });
 
     const params = new URLSearchParams(window.location.search);

@@ -50,7 +50,7 @@
             <div class="admin-top-actions">
                 <label class="admin-search">
                     <i class="fas fa-magnifying-glass"></i>
-                    <input type="search" id="adminSearch" placeholder="Search vehicles, leads…">
+                    <input type="search" id="adminSearch" placeholder="Search vehicles, promos, parts…">
                 </label>
                 <div class="admin-bell-wrap">
                     <button type="button" class="admin-icon-btn" id="adminBell" aria-label="Notifications">
@@ -175,27 +175,66 @@
             </section>
 
             <section class="admin-view" data-view="promotions" hidden>
-                <article class="glass-panel placeholder-panel">
-                    <p class="login-chip"><i class="fas fa-tags"></i> Promotions</p>
-                    <h2>Hot deals desk</h2>
-                    <p>Campaign windows, discount rails, and featured tiles. Wired as a demo surface — live editing stays on Vehicles for this build.</p>
-                    <div class="placeholder-cards">
-                        <div><strong>BMW X5 2022</strong><span>Save 10% · live</span></div>
-                        <div><strong>Ranger Wildtrak</strong><span>Free service pack</span></div>
-                        <div><strong>Corolla Hybrid</strong><span>Best value · ending</span></div>
+                <div class="panel-head vehicles-head">
+                    <div>
+                        <p>Campaigns</p>
+                        <h2>Hot deals desk</h2>
+                    </div>
+                    <button type="button" class="admin-gold-btn" id="addPromoBtn"><i class="fas fa-plus"></i> Add Promotion</button>
+                </div>
+                <article class="glass-panel table-panel">
+                    <div class="table-scroll">
+                        <table class="admin-table" id="promosTable">
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Campaign</th>
+                                    <th>Discount</th>
+                                    <th>Prices</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="promosTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="empty-state" id="promosEmpty" hidden>
+                        <i class="fas fa-tags"></i>
+                        <h3>No promotions live</h3>
+                        <p>Add a campaign tile to feature on the hot deals desk.</p>
                     </div>
                 </article>
             </section>
 
             <section class="admin-view" data-view="parts" hidden>
-                <article class="glass-panel placeholder-panel">
-                    <p class="login-chip"><i class="fas fa-cogs"></i> Spare parts</p>
-                    <h2>Parts counter</h2>
-                    <p>OEM bins, fast-moving SKUs, and bay requests. Demo inventory snapshot for the Kadawatha floor.</p>
-                    <div class="placeholder-cards">
-                        <div><strong>Brake kits</strong><span>42 in cage A</span></div>
-                        <div><strong>Filters</strong><span>118 mixed</span></div>
-                        <div><strong>Body trim</strong><span>7 back-ordered</span></div>
+                <div class="panel-head vehicles-head">
+                    <div>
+                        <p>Counter</p>
+                        <h2>Spare parts inventory</h2>
+                    </div>
+                    <button type="button" class="admin-gold-btn" id="addPartBtn"><i class="fas fa-plus"></i> Add Part</button>
+                </div>
+                <article class="glass-panel table-panel">
+                    <div class="table-scroll">
+                        <table class="admin-table" id="partsTable">
+                            <thead>
+                                <tr>
+                                    <th>Part</th>
+                                    <th>Category</th>
+                                    <th>SKU</th>
+                                    <th>Stock</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="partsTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="empty-state" id="partsEmpty" hidden>
+                        <i class="fas fa-cogs"></i>
+                        <h3>No parts in the cage</h3>
+                        <p>Add an SKU to start managing the parts counter.</p>
                     </div>
                 </article>
             </section>
@@ -353,6 +392,139 @@
                 <div class="drawer-actions">
                     <button type="button" class="skara-btn-ghost" data-close-drawer>Cancel</button>
                     <button type="submit" class="admin-gold-btn">Save listing</button>
+                </div>
+            </form>
+        </aside>
+    </div>
+
+    <div class="drawer-root" id="promoDrawer" hidden>
+        <div class="drawer-backdrop" data-close-promo-drawer></div>
+        <aside class="vehicle-drawer" role="dialog" aria-labelledby="promoDrawerTitle">
+            <header>
+                <div>
+                    <p id="promoDrawerKicker">Edit campaign</p>
+                    <h2 id="promoDrawerTitle">Promotion</h2>
+                </div>
+                <button type="button" class="admin-icon-btn" data-close-promo-drawer aria-label="Close"><i class="fas fa-xmark"></i></button>
+            </header>
+            <form id="promoForm">
+                <input type="hidden" id="promoId">
+                <input type="hidden" id="promoIsNew" value="0">
+                <label class="login-field">
+                    <span>Title</span>
+                    <div class="login-input"><input type="text" id="promoTitle" required placeholder="BMW X5 2022"></div>
+                </label>
+                <div class="form-two">
+                    <label class="login-field">
+                        <span>Vehicle link / ID</span>
+                        <div class="login-input"><input type="text" id="promoVehicleId" placeholder="x5 (optional)"></div>
+                    </label>
+                    <label class="login-field">
+                        <span>Badge / tag</span>
+                        <div class="login-input"><input type="text" id="promoBadge" placeholder="Hot Deal"></div>
+                    </label>
+                </div>
+                <div class="form-two">
+                    <label class="login-field">
+                        <span>Discount label</span>
+                        <div class="login-input"><input type="text" id="promoDiscount" placeholder="Save 10%"></div>
+                    </label>
+                    <label class="login-field">
+                        <span>Status</span>
+                        <div class="login-input">
+                            <select id="promoStatus">
+                                <option value="live">Live</option>
+                                <option value="ending">Ending</option>
+                            </select>
+                        </div>
+                    </label>
+                </div>
+                <div class="form-two">
+                    <label class="login-field">
+                        <span>Old price (LKR)</span>
+                        <div class="login-input"><input type="text" id="promoOldPrice" placeholder="35500000"></div>
+                    </label>
+                    <label class="login-field">
+                        <span>New price (LKR)</span>
+                        <div class="login-input"><input type="text" id="promoNewPrice" placeholder="32000000"></div>
+                    </label>
+                </div>
+                <label class="login-field">
+                    <span>Image URL</span>
+                    <div class="login-input"><input type="url" id="promoImage" placeholder="https://…"></div>
+                </label>
+                <label class="login-field">
+                    <span>Short note</span>
+                    <textarea id="promoNote" rows="4" placeholder="Campaign note for the floor team"></textarea>
+                </label>
+                <div class="drawer-actions">
+                    <button type="button" class="skara-btn-ghost" data-close-promo-drawer>Cancel</button>
+                    <button type="submit" class="admin-gold-btn">Save promotion</button>
+                </div>
+            </form>
+        </aside>
+    </div>
+
+    <div class="drawer-root" id="partDrawer" hidden>
+        <div class="drawer-backdrop" data-close-part-drawer></div>
+        <aside class="vehicle-drawer" role="dialog" aria-labelledby="partDrawerTitle">
+            <header>
+                <div>
+                    <p id="partDrawerKicker">Edit part</p>
+                    <h2 id="partDrawerTitle">Spare part</h2>
+                </div>
+                <button type="button" class="admin-icon-btn" data-close-part-drawer aria-label="Close"><i class="fas fa-xmark"></i></button>
+            </header>
+            <form id="partForm">
+                <input type="hidden" id="partId">
+                <input type="hidden" id="partIsNew" value="0">
+                <label class="login-field">
+                    <span>Part name</span>
+                    <div class="login-input"><input type="text" id="partName" required placeholder="Ceramic brake kit · front"></div>
+                </label>
+                <div class="form-two">
+                    <label class="login-field">
+                        <span>Category</span>
+                        <div class="login-input">
+                            <select id="partCategory">
+                                <option value="brake">Brake</option>
+                                <option value="filter">Filter</option>
+                                <option value="body">Body</option>
+                                <option value="engine">Engine</option>
+                                <option value="electrical">Electrical</option>
+                                <option value="suspension">Suspension</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </label>
+                    <label class="login-field">
+                        <span>SKU</span>
+                        <div class="login-input"><input type="text" id="partSku" required placeholder="BRK-FR-420"></div>
+                    </label>
+                </div>
+                <div class="form-two">
+                    <label class="login-field">
+                        <span>Stock qty</span>
+                        <div class="login-input"><input type="number" id="partStock" min="0" required placeholder="12"></div>
+                    </label>
+                    <label class="login-field">
+                        <span>Price (LKR)</span>
+                        <div class="login-input"><input type="text" id="partPrice" required placeholder="48500"></div>
+                    </label>
+                </div>
+                <label class="login-field">
+                    <span>Status</span>
+                    <div class="login-input">
+                        <select id="partStatus">
+                            <option value="in-stock">In stock</option>
+                            <option value="low">Low stock</option>
+                            <option value="backordered">Back-ordered</option>
+                        </select>
+                    </div>
+                </label>
+                <div class="drawer-actions">
+                    <button type="button" class="skara-btn-ghost" data-close-part-drawer>Cancel</button>
+                    <button type="submit" class="admin-gold-btn">Save part</button>
                 </div>
             </form>
         </aside>

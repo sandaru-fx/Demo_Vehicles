@@ -601,6 +601,25 @@ button { border: none; cursor: pointer; background: none; color: inherit; }
 .status-pill.new { background: rgba(46,204,113,0.15); color: #7dffb5; }
 .status-pill.used { background: rgba(212,168,67,0.15); color: var(--gold-light); }
 .status-pill.reco { background: rgba(255,255,255,0.08); color: var(--gray-200); }
+.status-pill.live { background: rgba(46,204,113,0.15); color: #7dffb5; }
+.status-pill.ending { background: rgba(231,76,60,0.15); color: #ffb4ae; }
+.status-pill.in-stock { background: rgba(46,204,113,0.15); color: #7dffb5; }
+.status-pill.low { background: rgba(212,168,67,0.15); color: var(--gold-light); }
+.status-pill.backordered { background: rgba(231,76,60,0.15); color: #ffb4ae; }
+.promo-prices { display: grid; gap: 2px; font-size: 0.82rem; }
+.promo-prices .old { color: var(--gray-300); text-decoration: line-through; }
+.promo-prices .new { color: var(--gold-light); font-weight: 700; }
+.cat-pill {
+    display: inline-flex;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    background: rgba(255,255,255,0.06);
+    color: var(--gray-200);
+}
 
 .empty-state {
     text-align: center;
