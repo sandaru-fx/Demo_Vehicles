@@ -736,6 +736,12 @@ input, select, textarea { font-family: var(--font); }
     .promo-cta-inner { flex-direction: column; text-align: center; }
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
 .header-cta {
     background: linear-gradient(135deg, var(--gold), var(--gold-dark));
     color: var(--navy);
@@ -746,6 +752,45 @@ input, select, textarea { font-family: var(--font); }
     display: flex; align-items: center; gap: 8px;
 }
 .header-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,168,67,0.4); }
+.header-admin-login {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba(212, 168, 67, 0.55);
+    background: transparent;
+    color: var(--gold-light);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+.header-admin-login i { font-size: 0.78rem; }
+.header-admin-text-short { display: none; }
+.header-admin-login:hover {
+    background: rgba(212, 168, 67, 0.12);
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-1px);
+}
+.main-header.scrolled .header-admin-login {
+    border-color: rgba(212, 168, 67, 0.75);
+    background: rgba(212, 168, 67, 0.06);
+}
+.header-admin-login.is-session {
+    border-color: var(--gold);
+    background: rgba(212, 168, 67, 0.1);
+}
+.mobile-admin-login {
+    margin-top: 18px;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    color: var(--gold-light) !important;
+    border: 1px solid rgba(212, 168, 67, 0.45);
+    border-radius: 999px;
+    padding: 10px 22px !important;
+}
 
 /* Hamburger */
 .hamburger {
@@ -946,12 +991,54 @@ input, select, textarea { font-family: var(--font); }
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 28px;
 }
+
+/* Vehicles page listing only — extra breathing room + 4 columns on desktop (Home keeps .vehicle-grid) */
+.vehicles-listing {
+    padding: 120px 0 140px;
+}
+.vehicles-listing > .container {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+#vehiclePageGrid.vehicle-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 36px;
+    padding: 12px 0 8px;
+}
+@media (max-width: 1023px) {
+    .vehicles-listing {
+        padding: 64px 0 100px;
+    }
+    .vehicles-listing > .container {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+    #vehiclePageGrid.vehicle-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+    }
+}
+@media (max-width: 767px) {
+    .vehicles-listing {
+        padding: 48px 0 80px;
+    }
+    .vehicles-listing > .container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    #vehiclePageGrid.vehicle-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 8px 0;
+    }
+}
 .vehicle-card {
     background: var(--white);
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     transition: var(--transition);
+    position: relative;
 }
 .vehicle-card:hover {
     transform: translateY(-8px);
@@ -1047,6 +1134,104 @@ input, select, textarea { font-family: var(--font); }
     box-shadow: 0 6px 20px rgba(212, 168, 67, 0.35);
 }
 .vehicle-explore-more:hover i { transform: translateX(4px); }
+.vehicle-admin-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 4;
+    display: flex;
+    gap: 6px;
+}
+.vehicle-admin-actions .vac-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border: 1px solid rgba(212, 168, 67, 0.65);
+    background: rgba(10, 22, 40, 0.88);
+    color: var(--gold-light);
+    backdrop-filter: blur(8px);
+}
+.vehicle-admin-actions .vac-btn:hover {
+    background: var(--navy);
+    border-color: var(--gold);
+}
+.vehicle-admin-actions .vac-delete {
+    border-color: rgba(231, 76, 60, 0.55);
+    color: #ffb4ae;
+}
+.skara-modal-root {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+.skara-modal-root[hidden] { display: none; }
+.skara-modal-root.is-on .skara-confirm-card { transform: none; opacity: 1; }
+.skara-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 22, 40, 0.72);
+}
+.skara-confirm-card {
+    position: relative;
+    width: min(400px, 100%);
+    background: var(--white);
+    border: 1px solid rgba(212, 168, 67, 0.25);
+    border-radius: 20px;
+    padding: 28px 24px 22px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(10px);
+    opacity: 0;
+    transition: 0.22s ease;
+}
+.skara-confirm-icon {
+    width: 48px; height: 48px;
+    margin: 0 auto 14px;
+    border-radius: 14px;
+    display: grid; place-items: center;
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--accent-red);
+}
+.skara-confirm-card h3 { color: var(--navy); font-size: 1.15rem; margin-bottom: 8px; }
+.skara-confirm-card p { color: var(--gray-600); font-size: 0.92rem; margin-bottom: 20px; }
+.skara-confirm-actions { display: flex; gap: 10px; justify-content: center; }
+.skara-btn-ghost, .skara-btn-danger, .skara-btn-gold {
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+.skara-btn-ghost {
+    border: 1px solid var(--gray-100);
+    background: transparent;
+    color: var(--navy);
+}
+.skara-btn-danger { background: var(--accent-red); color: var(--white); }
+.skara-btn-gold { background: var(--gold); color: var(--navy); }
+.skara-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 2100;
+    background: var(--navy);
+    color: var(--white);
+    border: 1px solid rgba(212, 168, 67, 0.35);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    box-shadow: var(--shadow-lg);
+}
+.skara-toast[hidden] { display: none; }
 .vehicle-filter-info {
     display: flex;
     flex-wrap: wrap;
@@ -2330,6 +2515,9 @@ textarea.form-control { resize: vertical; min-height: 120px; }
     .main-nav { display: none; }
     .hamburger { display: flex; }
     .header-cta { display: none; }
+    .header-admin-text-full { display: none; }
+    .header-admin-text-short { display: inline; }
+    .header-admin-login { padding: 8px 12px; }
     .stats-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
     .vehicle-grid { grid-template-columns: 1fr 1fr; }
     .why-grid { grid-template-columns: 1fr; }

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SKARA TRADERS Dealership OS">
+    <title>Admin Console | SKARA TRADERS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+    <div class="admin-backdrop" id="adminBackdrop" hidden></div>
+
+    <aside class="admin-sidebar" id="adminSidebar">
+        <a href="admin.html" class="admin-brand">
+            <span class="admin-brand-mark"><i class="fas fa-car-side"></i></span>
+            <span>
+                <strong>SKARA</strong>
+                <em>Dealership OS</em>
+            </span>
+        </a>
+
+        <nav class="admin-nav">
+            <p class="admin-nav-label">Console</p>
+            <button type="button" class="admin-nav-item is-active" data-nav="dashboard"><i class="fas fa-border-all"></i> Dashboard</button>
+            <button type="button" class="admin-nav-item" data-nav="vehicles"><i class="fas fa-car"></i> Vehicles</button>
+            <button type="button" class="admin-nav-item" data-nav="promotions"><i class="fas fa-tags"></i> Promotions</button>
+            <button type="button" class="admin-nav-item" data-nav="parts"><i class="fas fa-cogs"></i> Spare Parts</button>
+            <button type="button" class="admin-nav-item" data-nav="services"><i class="fas fa-wrench"></i> Services</button>
+            <button type="button" class="admin-nav-item" data-nav="leads"><i class="fas fa-inbox"></i> Leads</button>
+            <button type="button" class="admin-nav-item" data-nav="finance"><i class="fas fa-file-invoice-dollar"></i> Finance</button>
+            <button type="button" class="admin-nav-item" data-nav="settings"><i class="fas fa-sliders"></i> Settings</button>
+        </nav>
+
+        <div class="admin-nav-foot">
+            <a href="index.html" class="admin-nav-item link"><i class="fas fa-globe"></i> Back to Website</a>
+            <button type="button" class="admin-nav-item danger" id="adminLogout"><i class="fas fa-right-from-bracket"></i> Logout</button>
+        </div>
+    </aside>
+
+    <div class="admin-shell">
+        <header class="admin-topbar">
+            <button type="button" class="admin-menu-btn" id="adminMenuBtn" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+            <div>
+                <p class="admin-eyebrow" id="topbarEyebrow">Overview</p>
+                <h1 id="topbarTitle">Dashboard</h1>
+            </div>
+            <div class="admin-top-actions">
+                <label class="admin-search">
+                    <i class="fas fa-magnifying-glass"></i>
+                    <input type="search" id="adminSearch" placeholder="Search vehicles, leads…">
+                </label>
+                <div class="admin-bell-wrap">
+                    <button type="button" class="admin-icon-btn" id="adminBell" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="admin-dot">3</span>
+                    </button>
+                    <div class="admin-bell-panel" id="adminBellPanel" hidden>
+                        <p>Notifications</p>
+                        <a href="#"><strong>BMW X5 inquiry</strong><span>WhatsApp · 12 min ago</span></a>
+                        <a href="#"><strong>Finance application</strong><span>Ranger Wildtrak · pending</span></a>
+                        <a href="#"><strong>Service booking</strong><span>Tomorrow 09:30 · Kadawatha</span></a>
+                    </div>
+                </div>
+                <div class="admin-avatar">
+                    <span>SA</span>
+                    <div>
+                        <strong>SKARA Admin</strong>
+                        <em>Principal console</em>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <section class="admin-view is-active" data-view="dashboard">
+                <div class="kpi-grid" id="kpiGrid">
+                    <article class="kpi-card">
+                        <div class="kpi-top">
+                            <span>Vehicles in stock</span>
+                            <i class="fas fa-car-side"></i>
+                        </div>
+                        <strong id="kpiStock">0</strong>
+                        <div class="kpi-spark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                        <em>Showroom overlay · this browser</em>
+                    </article>
+                    <article class="kpi-card">
+                        <div class="kpi-top">
+                            <span>Hot deals</span>
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <strong id="kpiDeals">0</strong>
+                        <div class="kpi-spark gold" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                        <em>Badge marked Hot Deal</em>
+                    </article>
+                    <article class="kpi-card">
+                        <div class="kpi-top">
+                            <span>Open leads</span>
+                            <i class="fas fa-inbox"></i>
+                        </div>
+                        <strong>18</strong>
+                        <div class="kpi-spark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                        <em>Demo pipeline · last 7 days</em>
+                    </article>
+                    <article class="kpi-card">
+                        <div class="kpi-top">
+                            <span>Monthly estimates</span>
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <strong id="kpiMonthly">LKR 0</strong>
+                        <div class="kpi-spark gold" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                        <em>Indicative book value / 60</em>
+                    </article>
+                </div>
+
+                <div class="dash-split">
+                    <article class="glass-panel">
+                        <header class="panel-head">
+                            <div>
+                                <p>Floor pulse</p>
+                                <h2>Live inventory mix</h2>
+                            </div>
+                        </header>
+                        <ul class="mix-list" id="mixList"></ul>
+                    </article>
+                    <article class="glass-panel">
+                        <header class="panel-head">
+                            <div>
+                                <p>Activity</p>
+                                <h2>Today on the floor</h2>
+                            </div>
+                        </header>
+                        <ul class="activity-list">
+                            <li><span></span><div><strong>Walk-in viewing</strong><em>Range Rover Sport · 16:10</em></div></li>
+                            <li><span></span><div><strong>WhatsApp lead assigned</strong><em>Audi A4 S-Line · Nimal P.</em></div></li>
+                            <li><span></span><div><strong>Finance pre-approval</strong><em>Ford Ranger · 72% LTV</em></div></li>
+                            <li><span></span><div><strong>Detailing complete</strong><em>Mercedes C200 · bay 2</em></div></li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section class="admin-view" data-view="vehicles" hidden>
+                <div class="panel-head vehicles-head">
+                    <div>
+                        <p>Inventory</p>
+                        <h2>Vehicle management</h2>
+                    </div>
+                    <button type="button" class="admin-gold-btn" id="addVehicleBtn"><i class="fas fa-plus"></i> Add Vehicle</button>
+                </div>
+                <article class="glass-panel table-panel">
+                    <div class="table-scroll">
+                        <table class="admin-table" id="vehiclesTable">
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Name</th>
+                                    <th>Year</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vehiclesTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="empty-state" id="vehiclesEmpty" hidden>
+                        <i class="fas fa-warehouse"></i>
+                        <h3>No vehicles on the floor</h3>
+                        <p>Add a listing or restore stock to populate the showroom overlay.</p>
+                    </div>
+                </article>
+            </section>
+
+            <section class="admin-view" data-view="promotions" hidden>
+                <article class="glass-panel placeholder-panel">
+                    <p class="login-chip"><i class="fas fa-tags"></i> Promotions</p>
+                    <h2>Hot deals desk</h2>
+                    <p>Campaign windows, discount rails, and featured tiles. Wired as a demo surface — live editing stays on Vehicles for this build.</p>
+                    <div class="placeholder-cards">
+                        <div><strong>BMW X5 2022</strong><span>Save 10% · live</span></div>
+                        <div><strong>Ranger Wildtrak</strong><span>Free service pack</span></div>
+                        <div><strong>Corolla Hybrid</strong><span>Best value · ending</span></div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="admin-view" data-view="parts" hidden>
+                <article class="glass-panel placeholder-panel">
+                    <p class="login-chip"><i class="fas fa-cogs"></i> Spare parts</p>
+                    <h2>Parts counter</h2>
+                    <p>OEM bins, fast-moving SKUs, and bay requests. Demo inventory snapshot for the Kadawatha floor.</p>
+                    <div class="placeholder-cards">
+                        <div><strong>Brake kits</strong><span>42 in cage A</span></div>
+                        <div><strong>Filters</strong><span>118 mixed</span></div>
+                        <div><strong>Body trim</strong><span>7 back-ordered</span></div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="admin-view" data-view="services" hidden>
+                <article class="glass-panel placeholder-panel">
+                    <p class="login-chip"><i class="fas fa-wrench"></i> Services</p>
+                    <h2>Workshop diary</h2>
+                    <p>Detailing, warranty, and mechanical slots. Read-only for the client walkthrough.</p>
+                    <div class="placeholder-cards">
+                        <div><strong>Bay 1</strong><span>C200 · polish</span></div>
+                        <div><strong>Bay 2</strong><span>Hilux · service</span></div>
+                        <div><strong>Bay 3</strong><span>Open 14:00</span></div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="admin-view" data-view="leads" hidden>
+                <article class="glass-panel table-panel">
+                    <header class="panel-head">
+                        <div>
+                            <p>CRM</p>
+                            <h2>Inbound leads</h2>
+                        </div>
+                    </header>
+                    <div class="table-scroll">
+                        <table class="admin-table">
+                            <thead>
+                                <tr><th>Name</th><th>Interest</th><th>Channel</th><th>Status</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Nimal Perera</td><td>Audi A4</td><td>WhatsApp</td><td><span class="status-pill new">New</span></td></tr>
+                                <tr><td>S. Fernando</td><td>Range Rover Sport</td><td>Showroom</td><td><span class="status-pill used">Warm</span></td></tr>
+                                <tr><td>Ayesha Jay</td><td>Corolla Hybrid</td><td>Web form</td><td><span class="status-pill reco">Qualified</span></td></tr>
+                                <tr><td>Ruwan Silva</td><td>Ranger Wildtrak</td><td>Phone</td><td><span class="status-pill new">New</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
+
+            <section class="admin-view" data-view="finance" hidden>
+                <article class="glass-panel placeholder-panel">
+                    <p class="login-chip"><i class="fas fa-file-invoice-dollar"></i> Finance</p>
+                    <h2>Credit desk</h2>
+                    <p>Indicative leases and bank partners. Figures on the public finance page remain the client-facing calculator.</p>
+                    <div class="placeholder-cards">
+                        <div><strong>Pre-approved</strong><span>6 applications</span></div>
+                        <div><strong>Awaiting bank</strong><span>3 files</span></div>
+                        <div><strong>Avg LTV</strong><span>68%</span></div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="admin-view" data-view="settings" hidden>
+                <article class="glass-panel settings-panel">
+                    <p class="login-chip"><i class="fas fa-sliders"></i> Settings</p>
+                    <h2>Showroom profile</h2>
+                    <label class="login-field"><span>Dealership</span><div class="login-input"><input type="text" value="SKARA TRADERS" readonly></div></label>
+                    <label class="login-field"><span>Floor phone</span><div class="login-input"><input type="text" value="+94 77 123 4567" readonly></div></label>
+                    <label class="login-field"><span>Console</span><div class="login-input"><input type="text" value="Demo session · localStorage overlay" readonly></div></label>
+                    <p class="settings-note">This GitHub Pages demo stores login and inventory edits in the browser only. No backend is connected.</p>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <div class="drawer-root" id="vehicleDrawer" hidden>
+        <div class="drawer-backdrop" data-close-drawer></div>
+        <aside class="vehicle-drawer" role="dialog" aria-labelledby="drawerTitle">
+            <header>
+                <div>
+                    <p id="drawerKicker">Edit listing</p>
+                    <h2 id="drawerTitle">Vehicle</h2>
+                </div>
+                <button type="button" class="admin-icon-btn" data-close-drawer aria-label="Close"><i class="fas fa-xmark"></i></button>
+            </header>
+            <form id="vehicleForm">
+                <input type="hidden" id="vehId">
+                <input type="hidden" id="vehIsNew" value="0">
+                <label class="login-field">
+                    <span>Title</span>
+                    <div class="login-input"><input type="text" id="vehTitle" required placeholder="Audi A4 S-Line 2023"></div>
+                </label>
+                <div class="form-two">
+                    <label class="login-field">
+                        <span>Year</span>
+                        <div class="login-input"><input type="text" id="vehYear" placeholder="2023"></div>
+                    </label>
+                    <label class="login-field">
+                        <span>Price (LKR)</span>
+                        <div class="login-input"><input type="text" id="vehPrice" required placeholder="18500000"></div>
+                    </label>
+                </div>
+                <div class="form-two">
+                    <label class="login-field">
+                        <span>Mileage</span>
+                        <div class="login-input"><input type="text" id="vehKm" placeholder="25,000 km"></div>
+                    </label>
+                    <label class="login-field">
+                        <span>Badge</span>
+                        <div class="login-input"><input type="text" id="vehBadge" placeholder="Hot Deal"></div>
+                    </label>
+                </div>
+                <div class="form-two">
+                    <label class="login-field">
+                        <span>Fuel</span>
+                        <div class="login-input">
+                            <select id="vehFuel">
+                                <option>Petrol</option>
+                                <option>Diesel</option>
+                                <option>Hybrid</option>
+                                <option>Electric</option>
+                            </select>
+                        </div>
+                    </label>
+                    <label class="login-field">
+                        <span>Transmission</span>
+                        <div class="login-input">
+                            <select id="vehTrans">
+                                <option>Automatic</option>
+                                <option>Manual</option>
+                            </select>
+                        </div>
+                    </label>
+                </div>
+                <div class="form-two">
+                    <label class="login-field">
+                        <span>Status</span>
+                        <div class="login-input">
+                            <select id="vehCondition">
+                                <option>New</option>
+                                <option>Used</option>
+                                <option>Reconditioned</option>
+                            </select>
+                        </div>
+                    </label>
+                    <label class="login-field">
+                        <span>Body</span>
+                        <div class="login-input">
+                            <select id="vehBody">
+                                <option>Sedan</option>
+                                <option>SUV</option>
+                                <option>Van</option>
+                                <option>Double Cab</option>
+                                <option>Truck</option>
+                            </select>
+                        </div>
+                    </label>
+                </div>
+                <label class="login-field">
+                    <span>Description</span>
+                    <textarea id="vehDesc" rows="5" placeholder="Showroom notes and public description"></textarea>
+                </label>
+                <div class="drawer-actions">
+                    <button type="button" class="skara-btn-ghost" data-close-drawer>Cancel</button>
+                    <button type="submit" class="admin-gold-btn">Save listing</button>
+                </div>
+            </form>
+        </aside>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
